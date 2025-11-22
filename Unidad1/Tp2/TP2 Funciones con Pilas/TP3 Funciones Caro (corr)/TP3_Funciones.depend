@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1238061600 source:c:\users\carol\documents\tsp\tsp program 1\4ta uni - funciones\tp3 funciones caro\pila.c
+	"pila.h"
+
+1238061608 c:\users\carol\documents\tsp\tsp program 1\4ta uni - funciones\tp3 funciones caro\pila.h
+	<stdio.h>
+	<malloc.h>
+
+1649884143 source:c:\users\carol\documents\tsp\tsp program 1\4ta uni - funciones\tp3 funciones caro\main.c
+	<stdio.h>
+	<stdlib.h>
+	"pila.h"
+	<math.h>
+
+1238061600 source:c:\users\carol\documents\tsp\tsp program 1\4ta uni - funciones\tp3 funciones caro (corr)\pila.c
+	"pila.h"
+
+1238061608 c:\users\carol\documents\tsp\tsp program 1\4ta uni - funciones\tp3 funciones caro (corr)\pila.h
+	<stdio.h>
+	<malloc.h>
+

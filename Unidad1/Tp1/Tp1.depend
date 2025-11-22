@@ -1,6 +1,14 @@
 # depslib dependency file v1.0
-1763585559 source:c:\users\frann\onedrive\desktop\programacionunopractica\unidad1\tp1\main.c
+1763748005 source:c:\users\frann\onedrive\desktop\programacionunopractica\unidad1\tp1\main.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
+	"mis_funciones.h"
+
+1763748156 c:\users\frann\onedrive\desktop\programacionunopractica\unidad1\tp1\mis_funciones.h
+
+1763747548 source:c:\users\frann\onedrive\desktop\programacionunopractica\unidad1\tp1\mis_funciones.c
+	<stdio.h>
+	<stdlib.h>
+	"mis_funciones.h"
 

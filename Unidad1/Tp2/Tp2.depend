@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1763749346 source:c:\users\frann\onedrive\desktop\programacionunopractica\unidad1\tp2\pila.c
+	"pila.h"
+
+1763749346 c:\users\frann\onedrive\desktop\programacionunopractica\unidad1\tp2\pila.h
+	<stdio.h>
+	<malloc.h>
+
+1763754200 source:c:\users\frann\onedrive\desktop\programacionunopractica\unidad1\tp2\mis_funciones.c
+	"mis_funciones.h"
+
+1763754206 c:\users\frann\onedrive\desktop\programacionunopractica\unidad1\tp2\mis_funciones.h
+	<stdio.h>
+	"pila.h"
+

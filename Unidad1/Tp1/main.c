@@ -1,60 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
-//EJ 1
-int nroRandom ()
-{
-    return rand() % 101;
-}
-
-//EJ 2
-int devuelveMenor (int nro1, int nro2, int nro3)
-{
-    if(nro1 < nro2 && nro1 < nro3)
-    {
-        return nro1;
-    }
-    else if(nro2 < nro1 && nro2 < nro3)
-    {
-        return nro2;
-    }
-    else
-    {
-        return nro3;
-    }
-}
-
-int devuelveMayor (int nro1, int nro2, int nro3)
-{
-    if(nro1 > nro2 && nro1 > nro3)
-    {
-        return nro1;
-    }
-    else if(nro2 > nro1 && nro2 > nro3)
-    {
-        return nro2;
-    }
-    else
-    {
-        return nro3;
-    }
-}
-
-void devuelveMayorYMenor(int nro1, int nro2, int nro3, int *menor, int *mayor){
-    *menor = devuelveMenor(nro1,nro2,nro3);
-    *mayor = devuelveMayor(nro1,nro2,nro3);
-}
-
-int sumarNro (int nro)
-{
-    int suma = 0;
-    for (int i = 0; i  < nro; i++)
-    {
-        suma += i;
-    }
-    return suma;
-}
+#include "mis_funciones.h"
 
 int main()
 {
@@ -63,15 +10,19 @@ int main()
     char control = 's';
     int opcion;
     int nro;
-
-    int menor;
-    int mayor;
+    int nro2;
+    int menor,mayor;
+    int opcionCalcu;
 
     while(control == 's')
     {
         printf("Ej 1 \n");
         printf("Ej 2 \n");
         printf("Ej 3 \n");
+        printf("Ej 4 \n");
+        printf("Ej 5 \n");
+        printf("Ej 6 \n");
+        printf("Ej 7 \n");
         scanf("%d",&opcion);
         switch(opcion)
         {
@@ -91,7 +42,39 @@ int main()
             printf("Ingrese un Numero \n");
             scanf("%d", &nro);
             printf("La suma de los numeros es:%d \n", sumarNro(nro));
+            break;
+        }
+        case 4:
+        {
+            printf("Ingrese un Numero \n");
+            scanf("%d", &nro);
+            tablaMultiplicar(nro);
 
+            break;
+        }
+        case 5:
+        {
+            printf("Elija una opcion para la calculadora con sus dos numeros \n");
+            scanf("%d",&nro);
+            scanf("%d",&nro2);
+            printf("1.Sumar 2.Restar 3.Mult 4.Div\nOpcion: ");
+            scanf("%d",&opcionCalcu);
+            calculadora(nro,nro2,opcionCalcu);
+            break;
+        }
+
+        case 6:
+        {
+            printf("Ingrese un Numero \n");
+            scanf("%d", &nro);
+            printf("El numero pasado en negativo %d\n",devolverNroNegativo(nro));
+            break;
+        }
+
+        case 7:
+        {
+            valoresPorReferencia(&nro,&nro2);
+            printf("Nro1 == %d // Nro2 == %d\n",nro,nro2);
             break;
         }
         default:
