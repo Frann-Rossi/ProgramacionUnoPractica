@@ -19,3 +19,16 @@
 	<stdio.h>
 	<malloc.h>
 
+1763748693 source:c:\users\frann\onedrive\desktop\programacionunopractica\unidad1\tp2\tp2 funciones con pilas\tp3 funciones caro (corr)\main.c
+	<stdio.h>
+	<stdlib.h>
+	"pila.h"
+	<math.h>
+
+1763748693 c:\users\frann\onedrive\desktop\programacionunopractica\unidad1\tp2\tp2 funciones con pilas\tp3 funciones caro (corr)\pila.h
+	<stdio.h>
+	<malloc.h>
+
+1763748693 source:c:\users\frann\onedrive\desktop\programacionunopractica\unidad1\tp2\tp2 funciones con pilas\tp3 funciones caro (corr)\pila.c
+	"pila.h"
+
