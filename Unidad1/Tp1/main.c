@@ -16,13 +16,19 @@ int main()
 
     while(control == 's')
     {
-        printf("Ej 1 \n");
-        printf("Ej 2 \n");
-        printf("Ej 3 \n");
-        printf("Ej 4 \n");
-        printf("Ej 5 \n");
-        printf("Ej 6 \n");
-        printf("Ej 7 \n");
+        printf("\n======================================================\n");
+        printf("    TRABAJO PRACTICO N1 - FUNCIONES CON VARIABLES     \n");
+        printf("======================================================\n");
+        printf(" 1. Generar numero Random (0 a 100)\n");
+        printf(" 2. Mayor y Menor de 3 numeros\n");
+        printf(" 3. Sumatoria de anteriores a N\n");
+        printf(" 4. Tabla de multiplicar de un numero\n");
+        printf(" 5. Calculadora (Suma, Resta, Mult, Div)\n");
+        printf(" 6. Cambiar signo a Negativo (Paso por Referencia)\n");
+        printf(" 7. Cargar dos valores dentro de funcion (Referencia)\n");
+        printf(" 0. Salir\n");
+        printf("======================================================\n");
+        printf("Ingrese opcion: ");
         scanf("%d",&opcion);
         switch(opcion)
         {

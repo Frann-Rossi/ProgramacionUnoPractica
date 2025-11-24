@@ -90,14 +90,92 @@ void ordenamientoPorInsercion (Pila *origen, Pila *destino)
     }
 }
 
-void sumarPilar (Pila *origen){
-    int num;
+int sumarPila2Primero (Pila *origen)
+{
+    int num = desapilar (origen);
+    int suma = num + tope(origen);
+    apilar(origen,num);
+    return suma;
+}
+
+int sumarPila(Pila *origen)
+{
+    int suma = 0;
     Pila aux;
     inicpila(&aux);
+    while(!pilavacia(origen))
+    {
+        suma += tope(origen);
+        apilar(&aux,desapilar(origen));
+    }
+    while(!pilavacia(&aux))
+    {
+        apilar(origen,desapilar(&aux));
+    }
 
-    while(!pilavacia(origen)){
-        num = desapilar(origen) + tope(origen);
-        apilar()
+    return suma;
+}
+
+int contarElemPila(Pila *origen)
+{
+    int cont = 0;
+    Pila aux;
+    inicpila(&aux);
+    while(!pilavacia(origen))
+    {
+        cont++;
+        apilar(&aux,desapilar(origen));
+    }
+
+    while(!pilavacia(&aux))
+    {
+        apilar(origen,desapilar(&aux));
+    }
+
+    return cont;
+}
+
+float dividir(int dividendo, int divisor)
+{
+    return (float) dividendo / divisor;
+}
+
+float promedioPila (Pila *origen)
+{
+    int sum = sumarPila(origen);
+    int cant = contarElemPila(origen);
+    float promedio = dividir(sum,cant);
+    return promedio;
+}
+
+int transformarPilaEnDecimal (Pila *origen)
+{
+    int num = 0;
+    int digito;
+
+    Pila aux;
+    inicpila(&aux);
+    pasarAPila(origen,&aux);
+
+    while(!pilavacia(&aux))
+    {
+        digito = desapilar(&aux);
+
+        num = (num * 10) + digito;
+    }
+    return num;
+}
+
+void cargarPila (Pila *origen){
+    char control = 's';
+    int num;
+    while(control == 's'){
+        printf("Ingrese un numero para la PILA\n");
+        scanf("%d",&num);
+        apilar(origen,num);
+        printf("Seguir? s/n: ");
+        fflush(stdin);
+        scanf("%c", &control);
     }
 }
 
@@ -105,8 +183,14 @@ int main()
 {
     char control = 's';
     int opcion;
-    int menor;
+
     int num;
+    int menor;
+    int resultado;
+    int sumPila;
+    int contPila;
+    float resPromedio;
+    int resPilaEnDecimal;
 
     Pila origen;
     Pila destino;
@@ -115,14 +199,24 @@ int main()
 
     while(control == 's')
     {
-        printf("Ej 1\n");
-        printf("Ej 2\n");
-        printf("Ej 3\n");
-        printf("Ej 4\n");
-        printf("Ej 5\n");
-        printf("Ej 6\n");
-        printf("Ej 7\n");
-        printf("Ej 8\n");
+        printf("\n======================================================\n");
+        printf("      TRABAJO PRACTICO N2 - FUNCIONES CON PILAS       \n");
+        printf("======================================================\n");
+        printf(" 1. Cargar Pila (Ingresar elementos a voluntad)\n");
+        printf(" 2. Pasar de Pila A a Pila B (Invierte orden)\n");
+        printf(" 3. Pasar de Pila A a Pila B (Conservando orden)\n");
+        printf(" 4. Menor Elemento: Buscar, retornar y borrar\n");
+        printf(" 5. Ordenamiento por SELECCION (Usa Ej. 4)\n");
+        printf(" 6. Insertar elemento en Pila Ordenada (Mantiene orden)\n");
+        printf(" 7. Ordenamiento por INSERCION (Usa Ej. 6)\n");
+        printf(" 8. Suma tope y anterior (Sin alterar pila)\n");
+        printf(" 9. Calcular Promedio (Suma / Cantidad)\n");
+        printf("10. Transformar Pila de digitos a Decimal\n");
+        printf("11. Extra: Carga manual (Sin usar leer)\n");
+        printf("12. Extra: Mostrar manual (Sin usar mostrar)\n");
+        printf(" 0. Salir\n");
+        printf("======================================================\n");
+        printf("Ingrese opcion: ");
         scanf("%d", &opcion);
         switch(opcion)
         {
@@ -163,6 +257,26 @@ int main()
             ordenamientoPorInsercion(&origen, &destino);
             mostrar(&destino);
             break;
+        case 8:
+            resultado = sumarPila2Primero(&origen);
+            printf("La suma fue de:%d",resultado);
+            mostrar(&origen);
+            break;
+        case 9:
+            sumPila = sumarPila(&origen);
+            printf("Suma:%d\n",sumPila);
+            contPila = contarElemPila(&origen);
+            printf("Contador:%d\n",contPila);
+            resPromedio = promedioPila(&origen);
+            printf("El promedio fue de:%.2f\n",resPromedio);
+            break;
+        case 10:
+            resPilaEnDecimal = transformarPilaEnDecimal(&origen);
+            printf("%d\n",resPilaEnDecimal);
+            break;
+        case 11:
+            cargarPila(&origen);
+            mostrar(&origen);
         default:
             printf("Ingrese un valor valido\n");
         }
