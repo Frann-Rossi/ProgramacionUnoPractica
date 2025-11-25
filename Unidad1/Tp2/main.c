@@ -166,10 +166,12 @@ int transformarPilaEnDecimal (Pila *origen)
     return num;
 }
 
-void cargarPila (Pila *origen){
+void cargarPila (Pila *origen)
+{
     char control = 's';
     int num;
-    while(control == 's'){
+    while(control == 's')
+    {
         printf("Ingrese un numero para la PILA\n");
         scanf("%d",&num);
         apilar(origen,num);
@@ -177,6 +179,21 @@ void cargarPila (Pila *origen){
         fflush(stdin);
         scanf("%c", &control);
     }
+}
+
+void mostrarPila(Pila *origen)
+{
+    int num;
+    Pila aux;
+    inicpila(&aux);
+    pasarAPila(origen,&aux);
+    while(!pilavacia(&aux))
+    {
+        num = desapilar(&aux);
+        printf("|%d|",num);
+        apilar(origen,num);
+    }
+    printf("\n");
 }
 
 int main()
@@ -277,6 +294,10 @@ int main()
         case 11:
             cargarPila(&origen);
             mostrar(&origen);
+        case 12:
+            cargarPila(&origen);
+            mostrarPila(&origen);
+
         default:
             printf("Ingrese un valor valido\n");
         }
