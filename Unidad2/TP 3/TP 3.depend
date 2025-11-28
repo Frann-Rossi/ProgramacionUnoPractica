@@ -6,8 +6,9 @@
 	<stdio.h>
 	<malloc.h>
 
-1764300749 source:c:\users\frann\onedrive\desktop\programacionunopractica\unidad2\tp 3\main.c
+1764339706 source:c:\users\frann\onedrive\desktop\programacionunopractica\unidad2\tp 3\main.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
 	"pila.h"
 
