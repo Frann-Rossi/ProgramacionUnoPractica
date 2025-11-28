@@ -82,6 +82,42 @@ float sumarArrFloat(float arr[], int val)
     return sum;
 }
 
+int cargarArrCaracteres (char arrCaracteres[],int dim)
+{
+    int val = 0;
+    char control = 's';
+    while(control == 's' && val <= dim)
+    {
+        printf("Ingrese un numero para el arr\n");
+        fflush(stdin);
+        scanf("%c",&arrCaracteres[val]);
+        printf("Desea seguir 's/n'\n");
+        fflush(stdin);
+        scanf("%c",&control);
+        val++;
+    }
+    return val;
+}
+
+void mostrarArrCaracteres(char arrCaracteres[],int val)
+{
+    for(int i = 0; i < val; i++ )
+    {
+        printf("|%c|",arrCaracteres[i]);
+    }
+    printf("\n");
+}
+
+int existeElemento (char arrCaracteres[],int val, char letra){
+    int flag = 0;
+    for(int i = 0; i < val; i++){
+        if(arrCaracteres[i] == letra){
+            flag = 1;
+        }
+    }
+    return flag;
+}
+
 int main()
 {
     char control = 's';
@@ -94,6 +130,10 @@ int main()
     float arrReales[DIM];
     int valReales = 0;
     float sumaReales = 0;
+    char arrCaracteres[DIM];
+    int valChar = 0;
+    char letraBuscada;
+
 
     while(control == 's')
     {
@@ -137,6 +177,14 @@ int main()
             mostrarArrFloat(arrReales, valReales);
             sumaReales = sumarArrFloat(arrReales, valReales);
             printf("La suma de los reales es: %.2f\n", sumaReales);
+            break;
+        case 6:
+            valChar = cargarArrCaracteres(arrCaracteres,DIM);
+            mostrarArrCaracteres(arrCaracteres,valChar);
+            printf("Elija una letra para buscar\n");
+            fflush(stdin);
+            scanf("%c",&letraBuscada);
+            printf("La letra seleccionada fue encotrada %c\n",letraBuscada);
             break;
         default:
             printf("Elija un valor valido\n");
