@@ -6,6 +6,10 @@ int main()
     char control = 's';
     int opcion;
 
+    int cantidad = 0;
+    float precio = 0.00;
+    float total = 0;
+
     while(control == 's')
     {
         printf("\n======================================================\n");
@@ -19,6 +23,9 @@ int main()
         switch(opcion)
         {
         case 1:
+            productosComprados(&cantidad,&precio);
+            total = devolverMontoTotal(cantidad,precio);
+            printf("Monto total de la venta:%.2f\n",total);
             break;
         default:
             printf("Ingrese un valor valido\n");
