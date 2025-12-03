@@ -6,6 +6,9 @@
 #define DIM_FILA 3
 #define DIM_COL 3
 
+#define DIM_FILA2 2
+#define DIM_COL2 2
+
 #define DIM_FILACHAR 30
 #define DIM_COLCHAR 30
 
@@ -207,6 +210,86 @@ void ordenamientoPorInsercion(char matrizChar[][DIM_COLCHAR], int val)
     }
 }
 
+int devolverDeterminanteMatriz (int matriz[][DIM_COL2])
+{
+    int determinante;
+    int diagPrincipal = matriz[0][0] * matriz[1][1];
+    int diagSecundaria = matriz[1][0] * matriz[0][1];
+    determinante = diagPrincipal - diagSecundaria;
+    return determinante;
+}
+
+int tieneInversa(int matriz[][DIM_COL2])
+{
+    int det = devolverDeterminanteMatriz(matriz);
+    int flag = 0;
+
+    if(det != 0)
+    {
+        flag = 1;
+    }
+    return flag;
+}
+
+int esSimetrica(int matriz[][DIM_COL])
+{
+    int flag = 1;
+    for(int f = 0; f < DIM_FILA2; f++)
+    {
+        for(int c = 0; c < DIM_COL2; c++)
+        {
+            if(matriz[f][c] != matriz[c][f])
+            {
+                flag = 0;
+            }
+        }
+    }
+    return flag;
+}
+
+void generarMatrizIdentidad(int matriz[][DIM_COL2])
+{
+    for(int f = 0; f < DIM_FILA2; f++)
+    {
+        for(int c = 0; c < DIM_COL2; c++)
+        {
+
+            if ( f == c )
+            {
+                matriz[f][c] = 1;
+            }
+            else
+            {
+                matriz[f][c] = 0;
+            }
+        }
+    }
+}
+
+void cargarMatriz2x2(int matriz[][DIM_COL2])
+{
+
+    for(int f = 0; f < DIM_FILA2; f++)
+    {
+        for(int c = 0; c < DIM_COL2; c++)
+        {
+            matriz[f][c] = rand() % 11;
+        }
+    }
+}
+void mostrarMatriz2x2 (int matriz[][DIM_COL2])
+{
+    for(int f = 0; f < DIM_FILA2; f++)
+    {
+        for(int c = 0; c < DIM_COL2; c++)
+        {
+            printf("|%d|",matriz[f][c]);
+        }
+        printf("\n");
+    }
+}
+
+
 int main()
 {
     char control = 's';
@@ -219,6 +302,10 @@ int main()
     char matrizChar[DIM_FILACHAR][DIM_COLCHAR];
     int posPalabra;
     char palabra[DIM_COLCHAR];
+    int matriz2x2[DIM_FILA2][DIM_COL2];
+    int det;
+    int inversa;
+    int simetrica;
 
     while(control == 's')
     {
@@ -307,12 +394,44 @@ int main()
             }
             break;
         case 11:
-            printf("SELECCION\n")
+            printf("SELECCION\n");
             ordenamientoPorSeleccion(matrizChar,val);
             mostrarMatrizChar(matrizChar,val);
-            printf("INSERCION\n")
+            printf("INSERCION\n");
             ordenamientoPorInsercion(matrizChar,val);
             mostrarMatrizChar(matrizChar,val);
+            break;
+        case 12:
+            cargarMatriz2x2(matriz2x2);
+            mostrarMatriz2x2(matriz2x2);
+            det = devolverDeterminanteMatriz(matriz2x2);
+            printf("El determinante es:%d\n",det);
+            break;
+        case 13:
+            inversa = tieneInversa(matriz2x2);
+            if(inversa != 0)
+            {
+                printf("Tiene inversa\n");
+            }
+            else
+            {
+                printf("No tiene inversa");
+            }
+            break;
+        case 14:
+            simetrica = esSimetrica(matriz2x2);
+            if(simetrica != 0)
+            {
+                printf("Es simetrica\n");
+            }
+            else
+            {
+                printf("No es simetrica");
+            }
+            break;
+        case 15:
+            generarMatrizIdentidad(matriz2x2);
+            mostrarMatriz2x2(matriz2x2);
             break;
         default:
             printf("Ingrese un valor valido\n");
