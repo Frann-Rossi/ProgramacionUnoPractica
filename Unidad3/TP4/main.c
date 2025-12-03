@@ -108,6 +108,105 @@ int cargarMatrizChar(char matrizChar[][DIM_COLCHAR], int dim)
     return f;
 }
 
+void mostrarMatrizChar (char matrizChar[][DIM_COLCHAR], int val)
+{
+    for(int i = 0; i < val; i++)
+    {
+        printf("|%s|\n",matrizChar[i]);
+    }
+}
+
+int econtrarString (char matrizChar[][DIM_COLCHAR],int val, char palabra[])
+{
+    int flag = -1;
+    for(int i = 0; i < val ; i++)
+    {
+        if(strcmpi(matrizChar[i],palabra) == 0)
+        {
+            flag = i;
+        }
+    }
+    return flag;
+}
+
+int buscarStringOrdenado(char matrizChar[][DIM_COLCHAR], int val, char palabra[])
+{
+    int i = 0;
+
+    // Mientras no llegue al final
+    while(i < val)
+    {
+
+        // Comparamos la palabra de la matriz con la buscada
+        int comparacion = strcmpi(matrizChar[i], palabra);
+
+        if (comparacion == 0)
+        {
+            return i; // ¡La encontre! (Son iguales)
+        }
+
+        if (comparacion > 0)
+        {
+            return -1; // ¡Me pasé! (La de la matriz ya es "mayor" que la buscada).
+            // Como esta ordenado, no hace falta seguir.
+        }
+
+        i++;
+    }
+
+    return -1; // Llegue al final y no estaba
+}
+
+int buscarMenor (char matrizChar[][DIM_COLCHAR],int val,int posInicio)
+{
+    int posMenor = posInicio;
+    for(int i = posInicio + 1; i < val; i++)
+    {
+        if(strcmpi(matrizChar[i],matrizChar[posMenor]) < 0)
+        {
+            posMenor = i;
+        }
+    }
+    return posMenor;
+}
+
+void ordenamientoPorSeleccion(char matrizChar[][DIM_COLCHAR], int val)
+{
+    int posMenor;
+    char aux[DIM_COLCHAR];
+    for(int i = 0; i < val; i++)
+    {
+        posMenor = buscarMenor(matrizChar,val,i);
+
+        strcpy (aux,matrizChar[i]);
+        strcpy (matrizChar[i],matrizChar[posMenor]);
+        strcpy (matrizChar[posMenor],aux);
+    }
+}
+
+void insertarElemento (char matrizChar[][DIM_COLCHAR], int val, char elem[])
+{
+    int i = val - 1;
+
+    while(i >= 0 && strcmpi(elem,matrizChar[i]) < 0)
+    {
+        strcpy(matrizChar[i+1],matrizChar[i]);
+        i--;
+    }
+
+    strcpy(matrizChar[i+1], elem);
+}
+
+void ordenamientoPorInsercion(char matrizChar[][DIM_COLCHAR], int val)
+{
+    char aux[DIM_COLCHAR];
+    for(int i = 0; i < val; i++)
+    {
+        strcpy(aux,matrizChar[i]);
+        insertarElemento(matrizChar,i,aux);
+    }
+}
+
 int main()
 {
     char control = 's';
@@ -118,6 +217,8 @@ int main()
     int numBuscado;
     int val = 0;
     char matrizChar[DIM_FILACHAR][DIM_COLCHAR];
+    int posPalabra;
+    char palabra[DIM_COLCHAR];
 
     while(control == 's')
     {
@@ -174,6 +275,44 @@ int main()
         case 7:
             val = cargarMatrizChar(matrizChar,DIM_FILACHAR);
             printf("Se cargaron %d nombres\n", val);
+            break;
+        case 8:
+            mostrarMatrizChar(matrizChar,val);
+            break;
+        case 9:
+            printf("Palabra a BUSCAR\n");
+            scanf("%s",&palabra);
+            posPalabra = econtrarString(matrizChar,val,palabra);
+            if(posPalabra != -1)
+            {
+                printf("La palabra '%s' se encontra en la pos %d\n",palabra,posPalabra);
+            }
+            else
+            {
+                printf("La palabra no se encuentra en la lista\n");
+            }
+
+            break;
+        case 10:
+            printf("Palabra a BUSCAR\n");
+            scanf("%s",&palabra);
+            posPalabra = buscarStringOrdenado(matrizChar,val,palabra);
+            if(posPalabra != -1)
+            {
+                printf("La palabra '%s' se encontra en la pos %d\n",palabra,posPalabra);
+            }
+            else
+            {
+                printf("La palabra no se encuentra en la lista\n");
+            }
+            break;
+        case 11:
+            printf("SELECCION\n")
+            ordenamientoPorSeleccion(matrizChar,val);
+            mostrarMatrizChar(matrizChar,val);
+            printf("INSERCION\n")
+            ordenamientoPorInsercion(matrizChar,val);
+            mostrarMatrizChar(matrizChar,val);
             break;
         default:
             printf("Ingrese un valor valido\n");
