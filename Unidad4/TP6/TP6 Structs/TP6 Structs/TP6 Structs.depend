@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1495439042 source:c:\users\caroarchu.carolina\desktop\tsp-program\mis ejercicios 2do parc\tp6 structs\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1497227092 source:c:\users\caroarchu.carolina\desktop\tsp-program\mis ejercicios 2do parc\tp5 arr paral y structs\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1622012774 source:c:\users\carolina1\desktop\tsp program 1\8ta uni - estructuras\tp5 arr paral y structs\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1622828546 source:c:\users\carol\documents\tsp\tsp program 1\8ta uni - estructuras\tp5 arr paral y 6 structs\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1654567577 source:c:\users\carol\documents\tsp\tsp program 1\7ta y 8ta uni - arr paralelos y estructuras\tp5 arr paral y 6 structs\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
