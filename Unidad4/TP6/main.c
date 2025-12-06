@@ -128,10 +128,12 @@ void mostrarPorGenero(stAlumno arrAlum[],int val, char letraGenero)
 
 }
 
-int insertar(stAlumno arrAlum[], int val, stAlumno nuevoAlum){
+int insertar(stAlumno arrAlum[], int val, stAlumno nuevoAlum)
+{
     int i = val - 1;
 
-    while(i >= 0 && nuevoAlum.matricula < arrAlum[i].matricula){
+    while(i >= 0 && nuevoAlum.matricula < arrAlum[i].matricula)
+    {
         arrAlum[i + 1] = arrAlum[i];
         i--;
     }
@@ -139,6 +141,35 @@ int insertar(stAlumno arrAlum[], int val, stAlumno nuevoAlum){
     arrAlum[i + 1] = nuevoAlum;
 
     return val + 1;
+}
+
+void insertarElem(stAlumno arrAlum[], int tope, stAlumno elem)
+{
+    int i = tope;
+    while(i >= 0 && strcmpi(elem.nombre,arrAlum[i].nombre) < 0 )
+    {
+        arrAlum[i + 1] = arrAlum[i];
+        i--;
+    }
+    arrAlum[i +1] = elem;
+}
+
+void ordenamientoPorInsercion (stAlumno arrAlum[], int val)
+{
+    for(int i = 0; i < val - 1 ; i++)
+    {
+        insertarElem(arrAlum,i,arrAlum[i+1]);
+    }
+}
+
+int cantDeAlumPorGenero(stAlumno arrAlum[],int val, char genero){
+    int cont = 0;
+    for(int i = 0; i < val; i++){
+        if(arrAlum[i].genero == genero){
+            cont++;
+        }
+    }
+    return cont;
 }
 
 int main()
@@ -150,6 +181,7 @@ int main()
     int val = 0;
     char generoBuscado;
     stAlumno alumNuevo;
+    int alumCantPorGenero;
 
     while(control == 's')
     {
@@ -192,6 +224,17 @@ int main()
             alumNuevo = cargarAlumno();
             val = insertar(arrAlumnos,val,alumNuevo);
             mostrarAlumnos(arrAlumnos,val);
+            break;
+        case 7:
+            ordenamientoPorInsercion(arrAlumnos,val);
+            mostrarAlumnos(arrAlumnos,val);
+            break;
+        case 8:
+            printf("Ingrese un genero para contar:");
+            fflush(stdin);
+            scanf("%c",&generoBuscado);
+            alumCantPorGenero = cantDeAlumPorGenero(arrAlumnos,val,generoBuscado);
+            printf("El genero elegido %c y la cantidad fue %d\n",generoBuscado,alumCantPorGenero);
             break;
         case 0:
             printf("Saliendo del programa...\n");

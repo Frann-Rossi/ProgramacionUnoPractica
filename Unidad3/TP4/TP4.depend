@@ -1,6 +1,7 @@
 # depslib dependency file v1.0
-1764605053 source:c:\users\frann\onedrive\desktop\programacionunopractica\unidad3\tp4\main.c
+1764788883 source:c:\users\frann\onedrive\desktop\programacionunopractica\unidad3\tp4\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	<time.h>
 
