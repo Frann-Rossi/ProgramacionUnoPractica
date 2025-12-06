@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "pila.h"
 
 #define MAX_NOMBRE 30
 
@@ -144,6 +145,98 @@ void mostrarAlumArchivo(char nombreArchivo[])
     }
 }
 
+void agregarAlumArchivo (char nombreArchivo[])
+{
+    stAlumno alum;
+    FILE *buffer = fopen(nombreArchivo,"ab");
+
+    if(buffer)
+    {
+        alum = cargarAlum();
+        fwrite(&alum,sizeof(stAlumno),1,buffer);
+        fclose(buffer);
+    }
+    else
+    {
+        printf("Error al abrir el archivo\n");
+    }
+}
+
+void pasarLegajosAPila (char nombreArchivo[], Pila *origen)
+{
+    stAlumno alum;
+    FILE *buffer = fopen(nombreArchivo,"rb");
+
+    if(buffer)
+    {
+        while(fread(&alum,sizeof(stAlumno),1,buffer) > 0)
+        {
+            if(alum.edad >= 18)
+            {
+                apilar(origen,alum.legajo);
+            }
+        }
+        fclose(buffer);
+    }
+    else
+    {
+        printf("Error al abrir el archivo");
+    }
+}
+
+int contarMayoresEdad(char nombreArchivo[], int edadLimite)
+{
+    stAlumno alum;
+    int cont = 0;
+    FILE *buffer = fopen(nombreArchivo,"rb");
+
+    if(buffer)
+    {
+        while(fread(&alum,sizeof(stAlumno),1,buffer) > 0)
+        {
+            if(alum.edad > edadLimite)
+            {
+                cont++;
+            }
+        }
+        fclose(buffer);
+    }
+    else
+    {
+        printf("Error al abrir el archivo");
+    }
+
+    return cont;
+
+}
+
+void rangoDeEdad (stAlumno alum, int min, int max)
+{
+    if(alum.edad > min && alum.edad <= max)
+    {
+        mostrarAlum(alum);
+    }
+}
+
+void mostrarNombresPorEdad (char nombreArchivo[],int min, int max)
+{
+    stAlumno alum;
+    FILE *buffer = fopen(nombreArchivo,"rb");
+
+    if(buffer)
+    {
+        while(fread(&alum,sizeof(stAlumno),1,buffer)>0)
+        {
+            rangoDeEdad(alum,min,max);
+        }
+        fclose(buffer);
+    }
+    else
+    {
+        printf("Error al abrir el archivo\n");
+    }
+}
+
 int main()
 {
     char control = 's';
@@ -152,6 +245,9 @@ int main()
     char archivoAlum[] = "datosAlum.dat";
     int num;
     int cant;
+    Pila origen;
+    inicpila(&origen);
+    int min, max;
 
     while(control == 's')
     {
@@ -196,6 +292,26 @@ int main()
             break;
         case 5:
             mostrarAlumArchivo(archivoAlum);
+            break;
+        case 6:
+            agregarAlumArchivo(archivoAlum);
+            break;
+        case 7:
+            pasarLegajosAPila(archivoAlum,&origen);
+            mostrar(&origen);
+            break;
+        case 8 :
+            printf("Ingrese la edad base para contar: ");
+            scanf("%d", &num);
+            cant = contarMayoresEdad(archivoAlum, num);
+            printf("Hay %d alumnos mayores a %d anios.\n", cant, num);
+            break;
+        case 9:
+            printf("Ingrese edad minima: ");
+            scanf("%d", &min);
+            printf("Ingrese edad maxima: ");
+            scanf("%d", &max);
+            mostrarNombresPorEdad(archivoAlum, min, max);
             break;
         case 0:
             printf("Saliendo del programa...\n");
