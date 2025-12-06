@@ -116,6 +116,31 @@ void ordenamientoPorSeleccion (stAlumno arrAlum[],int val)
     }
 }
 
+void mostrarPorGenero(stAlumno arrAlum[],int val, char letraGenero)
+{
+    for(int i = 0; i < val; i++)
+    {
+        if(arrAlum[i].genero == letraGenero)
+        {
+            mostrarAlumno(arrAlum[i]);
+        }
+    }
+
+}
+
+int insertar(stAlumno arrAlum[], int val, stAlumno nuevoAlum){
+    int i = val - 1;
+
+    while(i >= 0 && nuevoAlum.matricula < arrAlum[i].matricula){
+        arrAlum[i + 1] = arrAlum[i];
+        i--;
+    }
+
+    arrAlum[i + 1] = nuevoAlum;
+
+    return val + 1;
+}
+
 int main()
 {
     char control = 's';
@@ -123,6 +148,9 @@ int main()
 
     stAlumno arrAlumnos[MAX_ALUMNOS];
     int val = 0;
+    char generoBuscado;
+    stAlumno alumNuevo;
+
     while(control == 's')
     {
         printf("\n\n--- TRABAJO PRACTICO 6: ESTRUCTURAS ---\n");
@@ -152,6 +180,17 @@ int main()
             break;
         case 4:
             ordenamientoPorSeleccion(arrAlumnos,val);
+            mostrarAlumnos(arrAlumnos,val);
+            break;
+        case 5:
+            printf("Ingrese genero a listar (m/f): ");
+            fflush(stdin);
+            scanf("%c", &generoBuscado);
+            mostrarPorGenero(arrAlumnos,val,generoBuscado);
+            break;
+        case 6:
+            alumNuevo = cargarAlumno();
+            val = insertar(arrAlumnos,val,alumNuevo);
             mostrarAlumnos(arrAlumnos,val);
             break;
         case 0:
