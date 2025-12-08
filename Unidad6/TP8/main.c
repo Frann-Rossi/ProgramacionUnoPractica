@@ -184,6 +184,75 @@ void mostrarAlumnos(stAlumno arr[], int val)
     printf("------------------------\n");
 }
 
+stAlumno* pasarArchivoAArrDimB(char nombreArchivo[],int val)
+{
+    stAlumno* arrDim = malloc(val * sizeof(stAlumno));
+    if(arrDim == NULL)
+    {
+        return NULL;
+    }
+    FILE *buffer = fopen(nombreArchivo,"rb");
+    if(buffer)
+    {
+        for(int i = 0; i < val; i++)
+        {
+            fread(&arrDim[i],sizeof(stAlumno),1,buffer);
+        }
+        fclose(buffer);
+    }
+    return arrDim;
+}
+
+void pasarArchivoAArrDimC(char nombreArchivo[],int val, stAlumno** arrDim)
+{
+    *arrDim = malloc(val * sizeof(stAlumno));
+    if(arrDim == NULL)
+    {
+        return;
+    }
+    FILE *buffer = fopen(nombreArchivo,"rb");
+    if(buffer)
+    {
+        for(int i = 0; i < val; i++)
+        {
+            fread(&(*arrDim)[i],sizeof(stAlumno),1,buffer);
+        }
+        fclose(buffer);
+    }
+}
+
+// Retorna int* porque la dirección de memoria PUEDE cambiar
+int* redimensionarArreglo(int* arreglo, int validos, int nuevoTamano)
+{
+    // 1. Usamos un puntero auxiliar por seguridad
+    // realloc recibe: (puntero_viejo, cantidad_bytes_nueva)
+    int* arregloNuevo = (int*) realloc(arreglo, nuevoTamano * sizeof(int));
+
+    // 2. Verificamos si la RAM nos dio el espacio
+    if(arregloNuevo == NULL)
+    {
+        printf("Error: No se pudo redimensionar el arreglo.\n");
+        return arreglo; // Devolvemos el original intacto para no perder los datos
+    }
+
+    // 3. (Opcional) Podemos imprimir qué pasó
+    printf("Arreglo redimensionado de %d a %d elementos.\n", validos, nuevoTamano);
+
+    // 4. Retornamos la nueva dirección
+    return arregloNuevo;
+}
+
+void redimensionarArregloConPuntero2 (stAlumno** arrDim, int nuevoTamanio)
+{
+    stAlumno* aux = realloc(*arrDim,nuevoTamanio * sizeof(stAlumno));
+
+    if(aux)
+    {
+        *arrDim = aux;
+    }
+}
+
+
 int main()
 {
     char control = 's';
@@ -193,6 +262,7 @@ int main()
     int cantPares;
     int *arrDim = NULL;
     stAlumno *arrDimAlum = NULL;
+    int nuevoTam;
 
     char archivoAlum[] = "datosAlum.dat";
 
@@ -264,6 +334,24 @@ int main()
             arrDimAlum = malloc(val * sizeof(stAlumno));
             pasarArchivoAArrDim(arrDimAlum, archivoAlum, val);
             mostrarAlumnos(arrDimAlum,val);
+            break;
+        case 6:
+            val = cantElemArchivo(archivoAlum);
+            arrDimAlum = pasarArchivoAArrDimB(archivoAlum,val);
+            mostrarAlumnos(arrDimAlum,val);
+            break;
+        case 7:
+            val = cantElemArchivo(archivoAlum);
+            pasarArchivoAArrDimC(archivoAlum,val,&arrDimAlum);
+            mostrarAlumnos(arrDimAlum,val);
+            break;
+        case 8:
+            printf("Ingrese nuevo tamaño: ");
+            scanf("%d", &nuevoTam);
+            redimensionarArregloConPuntero2(&arrDimAlum,nuevoTam);
+            val = nuevoTam;
+            printf("\n--- Arreglo Redimensionado ---\n");
+            mostrarAlumnos(arrDimAlum, val);
             break;
         case 0:
             control = 'n';
