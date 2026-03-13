@@ -98,18 +98,36 @@ int capicua(int arr[], int i, int val)
     return res;
 }
 
-int sumarRecuriva(int arr[], int val,int i){
+int sumarRecuriva(int arr[], int val,int i)
+{
 
     int rta;
 
-    if(i == val){
+    if(i == val)
+    {
         rta = 0;
     }
-    else{
+    else
+    {
         rta = arr[i] + sumarRecuriva(arr,val,i+1);
     }
     return rta;
 }
+
+int buscarMenor (int arr[],int val, int i,int posMenor)
+{
+    if(i < val)
+    {
+        if(arr[i] < arr[posMenor])
+        {
+            posMenor = i;
+        }
+        posMenor = buscarMenor(arr,val,i+1,posMenor);
+    }
+    return posMenor;
+}
+
+
 
 int main()
 {
@@ -118,6 +136,7 @@ int main()
     int num,res,b, e;
     int arr[DIM];
     int val = 0;
+    int posicionDelMenor;
 
     while(control == 's')
     {
@@ -177,6 +196,17 @@ int main()
             {
                 printf("El arreglo NO ES CAPICUA.\n");
             }
+        case 6:
+            printf("\n--- Cargando Arreglo ---\n");
+            val = cargarArr(arr, 0, DIM);
+            res = sumarRecuriva(arr,val,0);
+            printf("La suma del arr fue:%d\n",res);
+            break;
+        case 7:
+             printf("\n--- Cargando Arreglo ---\n");
+            val = cargarArr(arr, 0, DIM);
+            posicionDelMenor = buscarMenor(arr, val, 0, 0);
+            printf("El menor elemento es: %d (esta en la posicion %d)\n", arr[posicionDelMenor], posicionDelMenor);
             break;
         case 0:
             control = 'n';

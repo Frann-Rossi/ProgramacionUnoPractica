@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1765509978 source:c:\users\frann\onedrive\desktop\programacionunopractica\parciales\parcialdosempresalogistica\main.c
+	<stdio.h>
+	<stdlib.h>
+
