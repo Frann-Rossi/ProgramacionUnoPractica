@@ -203,6 +203,47 @@ Pila insertarElementoPorCopia(Pila a, int numIngresado)
 
 //--------------------------------------------------
 // Ejercicio 9
+int sumarPila(Pila* a)
+{
+    Pila aux;
+    inicpila(&aux);
+    int sum = 0;
+    int valor;
+    while(!pilavacia(a))
+    {
+        valor = desapilar(a);
+        sum = sum + valor;
+        apilar(&aux,valor);
+    }
+    pasarPilaAOtra(&aux,a);
+    return sum;
+}
+
+int cantPila(Pila* a)
+{
+    Pila aux;
+    inicpila(&aux);
+    int cant = 0;
+    while(!pilavacia(a))
+    {
+        cant++;
+        apilar(&aux,desapilar(a));
+    }
+    pasarPilaAOtra(&aux,a);
+    return cant;
+}
+
+float dividir(int sumTotal, int cant){
+    return (float)sumTotal/cant;
+}
+
+void promedio(Pila* a){
+    int sumaTotal = sumarPila(a);
+    int cant = cantPila(a);
+    float promedio = dividir(sumaTotal,cant);
+    printf("El promedio de la pila fue:%.2f",promedio);
+}
+
 //--------------------------------------------------
 
 int main()
@@ -286,6 +327,7 @@ int main()
             mostrar(&a);
             break;
         case 9:
+            promedio(&a);
             break;
         case 0:
             control = 'n';
