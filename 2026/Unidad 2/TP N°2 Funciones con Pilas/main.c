@@ -2,18 +2,34 @@
 #include <stdlib.h>
 #include "pila.h"
 
-void cargarPila(Pila* dirPila)
+//--------------------------------------------------
+// Ejercicio 1
+void cargarPila(Pila* a)
 {
     char control = 's';
     while(control == 's')
     {
-        leer(dirPila);
+        leer(a);
         printf("\nDesea seguir cargando valores 's/n':");
         scanf(" %c",&control);
     }
 
 }
+Pila cargarPilaPorCopia(Pila a)
+{
+    char control = 's';
+    while(control == 's')
+    {
+        leer(&a);
+        printf("\nDesea seguir cargando valores 's/n':");
+        scanf(" %c",&control);
+    }
+    return a;
+}
+//--------------------------------------------------
 
+//--------------------------------------------------
+// Ejercicio 2
 void pasarPilaAOtra(Pila* a, Pila* b)
 {
     while(!pilavacia(a))
@@ -21,7 +37,18 @@ void pasarPilaAOtra(Pila* a, Pila* b)
         apilar(b,desapilar(a));
     }
 }
+Pila pasarPilaAOtraPorCopia(Pila a, Pila b)
+{
+    while(!pilavacia(&a))
+    {
+        apilar(&b,desapilar(&a));
+    }
+    return b;
+}
+//--------------------------------------------------
 
+//--------------------------------------------------
+// Ejercicio 3
 void pasarPilaAOtraMantieneOrden (Pila* a, Pila* b)
 {
     Pila aux;
@@ -30,7 +57,10 @@ void pasarPilaAOtraMantieneOrden (Pila* a, Pila* b)
     pasarPilaAOtra(a,&aux);
     pasarPilaAOtra(&aux,b);
 }
+//--------------------------------------------------
 
+//--------------------------------------------------
+// Ejercicio 4
 void invertirValores(Pila* a)
 {
     Pila aux;
@@ -42,7 +72,10 @@ void invertirValores(Pila* a)
     pasarPilaAOtra(&aux,&aux2);
     pasarPilaAOtra(&aux2,a);
 }
+//--------------------------------------------------
 
+//--------------------------------------------------
+// Ejercicio 5
 int buscarElemento (Pila* a, int numBuscado)
 {
     Pila aux;
@@ -61,6 +94,7 @@ int buscarElemento (Pila* a, int numBuscado)
     pasarPilaAOtra(&aux,a);
     return flag;
 }
+//--------------------------------------------------
 
 int solicitarNum (int num)
 {
@@ -69,6 +103,10 @@ int solicitarNum (int num)
     return num;
 }
 
+//--------------------------------------------------
+
+//--------------------------------------------------
+// Ejercicio 6
 void eliminarElemento(Pila* a, int num)
 {
     Pila aux;
@@ -88,6 +126,29 @@ void eliminarElemento(Pila* a, int num)
     pasarPilaAOtra(&aux,a);
 }
 
+Pila eliminarElementoPorCopia(Pila a, int num)
+{
+    Pila aux;
+    inicpila(&aux);
+    while(!pilavacia(&a))
+    {
+        if(num == tope(&a))
+        {
+            desapilar(&a);
+        }
+        else
+        {
+            apilar(&aux,desapilar(&a));
+        }
+
+    }
+    pasarPilaAOtra(&aux,&a);
+    return a;
+}
+//--------------------------------------------------
+
+//--------------------------------------------------
+// Ejercicio 7
 int buscarMenor(Pila* a)
 {
     Pila aux;
@@ -108,6 +169,41 @@ int buscarMenor(Pila* a)
     pasarPilaAOtra(&aux,a);
     return menor;
 }
+//--------------------------------------------------
+
+//--------------------------------------------------
+// Ejercicio 8
+void insertarElemento(Pila* a, int numIngresado)
+{
+    Pila aux;
+    inicpila(&aux);
+    while(!pilavacia(a) && tope(a) > numIngresado)
+    {
+        apilar(&aux,desapilar(a));
+
+    }
+    apilar(a,numIngresado);
+    pasarPilaAOtra(&aux,a);
+}
+
+Pila insertarElementoPorCopia(Pila a, int numIngresado)
+{
+    Pila aux;
+    inicpila(&aux);
+    while(!pilavacia(&a) && tope(&a) > numIngresado)
+    {
+        apilar(&aux,desapilar(&a));
+
+    }
+    apilar(&a,numIngresado);
+    pasarPilaAOtra(&aux,&a);
+    return a;
+}
+//--------------------------------------------------
+
+//--------------------------------------------------
+// Ejercicio 9
+//--------------------------------------------------
 
 int main()
 {
@@ -118,7 +214,7 @@ int main()
     Pila b;
     inicpila(&a);
     inicpila(&b);
-    int numBuscado;
+    int num;
     int res;
 
 
@@ -131,6 +227,8 @@ int main()
         printf("Buscar Numero en pila == 5\n");
         printf("Eliminar Numero en pila == 6\n");
         printf("Buscar el Numero Menor en pila == 7\n");
+        printf("Ingresar nuevo elemento a pila ordenada == 8\n");
+        printf("Calcular Promedio de pila == 9\n");
         printf("Salir == 0\n");
         scanf("%d",&opc);
         switch(opc)
@@ -159,28 +257,35 @@ int main()
             mostrar(&a);
             break;
         case 5:
-            numBuscado = solicitarNum(numBuscado);
-            res = buscarElemento(&a,numBuscado);
+            num = solicitarNum(num);
+            res = buscarElemento(&a,num);
             if(res)
             {
-                printf("El numero %d fue encontrado en la pila\n", numBuscado);
+                printf("El numero %d fue encontrado en la pila\n", num);
                 mostrar(&a);
             }
             else
             {
-                printf("El numero %d NO fue encontrado en la pila\n",numBuscado);
+                printf("El numero %d NO fue encontrado en la pila\n",num);
                 mostrar(&a);
             }
             break;
         case 6:
-            numBuscado = solicitarNum(numBuscado);
-            eliminarElemento(&a,numBuscado);
+            num = solicitarNum(num);
+            eliminarElemento(&a,num);
             mostrar(&a);
             break;
         case 7:
             res = buscarMenor(&a);
             printf("El numero mas chico fue:%d\n",res);
             mostrar(&a);
+            break;
+        case 8:
+            num = solicitarNum(num);
+            insertarElemento(&a,num);
+            mostrar(&a);
+            break;
+        case 9:
             break;
         case 0:
             control = 'n';
