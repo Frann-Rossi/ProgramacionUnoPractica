@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1773683201 source:c:\users\usuario\desktop\rossifranco\main.c
+	<stdio.h>
+	<stdlib.h>
+	"pila.h"
+
+1773681585 source:c:\users\usuario\desktop\rossifranco\pila.c
+	<stdio.h>
+	"pila.h"
+
+1773681592 c:\users\usuario\desktop\rossifranco\pila.h
+
+1773751283 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\unidad 2\tp n°2 funciones con pilas\main.c
+	<stdio.h>
+	<stdlib.h>
+	"pila.h"
+
+1773751283 c:\users\frann\onedrive\desktop\programacionunopractica\2026\unidad 2\tp n°2 funciones con pilas\pila.h
+
+1773751283 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\unidad 2\tp n°2 funciones con pilas\pila.c
+	<stdio.h>
+	"pila.h"
+
