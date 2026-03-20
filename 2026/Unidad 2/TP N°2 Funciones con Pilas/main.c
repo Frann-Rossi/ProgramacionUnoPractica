@@ -76,22 +76,22 @@ void invertirValores(Pila* a)
 
 //--------------------------------------------------
 // Ejercicio 5
-int buscarElemento (Pila* a, int numBuscado)
+int buscarElemento (Pila a, int numBuscado)
 {
     Pila aux;
     inicpila(&aux);
     int flag = 0;
     int num;
-    while(!pilavacia(a))
+    while(!pilavacia(&a))
     {
-        num = tope(a);
+        num = tope(&a);
         if(numBuscado == num)
         {
             flag = 1;
         }
-        apilar(&aux, desapilar(a));
+        apilar(&aux, desapilar(&a));
     }
-    pasarPilaAOtra(&aux,a);
+    pasarPilaAOtra(&aux,&a);
     return flag;
 }
 //--------------------------------------------------
@@ -149,24 +149,24 @@ Pila eliminarElementoPorCopia(Pila a, int num)
 
 //--------------------------------------------------
 // Ejercicio 7
-int buscarMenor(Pila* a)
+int buscarMenor(Pila a)
 {
     Pila aux;
     inicpila(&aux);
-    int menor = desapilar(a);
-    while(!pilavacia(a))
+    int menor = desapilar(&a);
+    while(!pilavacia(&a))
     {
-        if(tope(a) <  menor)
+        if(tope(&a) <  menor)
         {
             apilar(&aux,menor);
-            menor = desapilar(a);
+            menor = desapilar(&a);
         }
         else
         {
-            apilar(&aux,desapilar(a));
+            apilar(&aux,desapilar(&a));
         }
     }
-    pasarPilaAOtra(&aux,a);
+    pasarPilaAOtra(&aux,&a);
     return menor;
 }
 //--------------------------------------------------
@@ -203,45 +203,39 @@ Pila insertarElementoPorCopia(Pila a, int numIngresado)
 
 //--------------------------------------------------
 // Ejercicio 9
-int sumarPila(Pila* a)
+int sumarPila(Pila a)
 {
-    Pila aux;
-    inicpila(&aux);
     int sum = 0;
-    int valor;
-    while(!pilavacia(a))
+    while(!pilavacia(&a))
     {
-        valor = desapilar(a);
-        sum = sum + valor;
-        apilar(&aux,valor);
+        sum = sum + desapilar(&a);
     }
-    pasarPilaAOtra(&aux,a);
     return sum;
 }
 
-int cantPila(Pila* a)
+int cantPila(Pila a)
 {
-    Pila aux;
-    inicpila(&aux);
     int cant = 0;
-    while(!pilavacia(a))
+    while(!pilavacia(&a))
     {
+
+        desapilar(&a);
         cant++;
-        apilar(&aux,desapilar(a));
     }
-    pasarPilaAOtra(&aux,a);
     return cant;
 }
 
-float dividir(int sumTotal, int cant){
+float dividir(int sumTotal, int cant)
+{
     return (float)sumTotal/cant;
 }
 
-void promedio(Pila* a){
+float promedio(Pila a)
+{
     int sumaTotal = sumarPila(a);
     int cant = cantPila(a);
-    float promedio = dividir(sumaTotal,cant);
-    printf("El promedio de la pila fue:%.2f",promedio);
+    float resultadoPromedio = dividir(sumaTotal,cant);
+    return resultadoPromedio;
 }
 
 //--------------------------------------------------
@@ -257,6 +251,7 @@ int main()
     inicpila(&b);
     int num;
     int res;
+    float resPormedio;
 
 
     while(control == 's')
@@ -299,7 +294,7 @@ int main()
             break;
         case 5:
             num = solicitarNum(num);
-            res = buscarElemento(&a,num);
+            res = buscarElemento(a,num);
             if(res)
             {
                 printf("El numero %d fue encontrado en la pila\n", num);
@@ -317,7 +312,7 @@ int main()
             mostrar(&a);
             break;
         case 7:
-            res = buscarMenor(&a);
+            res = buscarMenor(a);
             printf("El numero mas chico fue:%d\n",res);
             mostrar(&a);
             break;
@@ -327,7 +322,8 @@ int main()
             mostrar(&a);
             break;
         case 9:
-            promedio(&a);
+            resPormedio = promedio(a);
+            printf("El promedio de la pila fue:%.2f",resPormedio);
             break;
         case 0:
             control = 'n';

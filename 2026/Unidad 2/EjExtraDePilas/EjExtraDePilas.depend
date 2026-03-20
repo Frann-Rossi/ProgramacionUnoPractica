@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1773850749 source:c:\users\usuario\desktop\ejextradepilas\pila.c
+	<stdio.h>
+	"pila.h"
+
+1773850749 c:\users\usuario\desktop\ejextradepilas\pila.h
+
+1773853728 source:c:\users\usuario\desktop\ejextradepilas\main.c
+	<stdio.h>
+	<stdlib.h>
+	"pila.h"
+
