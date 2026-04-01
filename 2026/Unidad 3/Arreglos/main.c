@@ -143,6 +143,106 @@ int agregarElem (char arrChar[], int val,char letra)
 }
 
 //********************
+
+//********************
+// Ejercicio 8
+int mayorCaracter(char arrChar[],int val)
+{
+    int mayor = arrChar[0];
+    for(int i = 1; i < val ; i++)
+    {
+        if(mayor < arrChar[i])
+        {
+            mayor = arrChar[i];
+        }
+    }
+    return mayor;
+}
+//********************
+
+// Ejercicio 9
+int esCapicua (int arr[],int val)
+{
+    int flag = 1;
+    int i = 0;
+    int j = val - 1;
+
+    while(i<j)
+    {
+        if (arr[i] != arr[j])
+        {
+            flag = 0;
+        }
+        i++;
+        j--;
+    }
+    return flag;
+}
+//********************
+// Ejercicio 10
+void invertirArr(int arr[],int val)
+{
+    int aux;
+    for(int i = 0; i < val/2; i++)
+    {
+        aux = arr[i];
+        arr[i] = arr[val - 1 - i];
+        arr[val - 1 - i] = aux;
+    }
+}
+//********************
+
+//********************
+// Ejercicio 11
+
+// SELECCION
+int buscarMenor(int arr[],int val, int pos)
+{
+    int menor = arr[pos];
+    int posMenor = pos;
+
+    for(int i = pos + 1; i < val; i++)
+    {
+        if(menor > arr[i])
+        {
+            menor = arr[i];
+            posMenor = i;
+        }
+    }
+    return posMenor;
+}
+
+void ordenamientoPorSeleccion(int arr[],int val)
+{
+    int posMenor;
+    int aux;
+    for(int i = 0; i < val; i++)
+    {
+        posMenor = buscarMenor(arr,val,i);
+        aux = arr[posMenor];
+        arr[posMenor] = arr[i];
+        arr[i] = aux;
+    }
+}
+
+//INSERCION
+void insertar(int arr[],int val, int elem)
+{
+    int i = val - 1;
+    while(i >= 0 && elem < arr[i])
+    {
+        arr[i + 1] = arr[i];
+        i--;
+    }
+    arr[i + 1] = elem;
+}
+
+void ordenamientoPorInsercion(int arr[],int val)
+{
+    for(int i = 0;i < val; i++)
+        insertar(arr,i,arr[i]);
+}
+//********************
 int main()
 {
     char control = 's';
@@ -160,6 +260,7 @@ int main()
     int cant = 0;
 
     char arrChar[DIM];
+    int mayor;
 
     while(control == 's')
     {
@@ -170,6 +271,12 @@ int main()
         printf("Pasar ARR a Pila == 5\n");
         printf("Encontrar Numero en ARR == 6\n");
         printf("Cargar ARR de Char y Mostrar == 7\n");
+        printf("Agregar char en ArrDeChar ordenado == 8\n");
+        printf("Mayor CHAR == 9\n");
+        printf("Es CAPICUA == 10\n");
+        printf("Invertir ARR == 11\n");
+        printf("Ordenamiento por SELECCION == 12\n");
+        printf("Ordenamiento por INSERCION == 13\n");
         printf("Salir == 0\n");
         scanf("%d",&opcion);
         switch(opcion)
@@ -208,9 +315,37 @@ int main()
         case 7:
             val = cargarArrChar (arrChar,DIM);
             mostrarArrChar(arrChar,val);
+            break;
+        case 8:
             val = agregarElem(arrChar,val,'b');
-            printf("\n");
             mostrarArrChar(arrChar,val);
+            break;
+        case 9:
+            mayor = mayorCaracter(arrChar,val);
+            printf("El MAYOR Char fue: %c",mayor);
+            break;
+        case 10:
+            res = esCapicua(arr,val);
+            if(res)
+            {
+                printf("El arr es CAPICUA");
+            }
+            else
+            {
+                printf("El arr NO es CAPICUA");
+            }
+            break;
+        case 11:
+            invertirArr(arr,val);
+            mostrarArr(arr,val);
+            break;
+        case 12:
+            ordenamientoPorSeleccion(arr,val);
+            mostrarArr(arr,val);
+            break;
+        case 13:
+            ordenamientoPorInsercion(arr,val);
+            mostrarArr(arr,val);
             break;
         case 0:
             control = 'n';
