@@ -1,18 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 #define DIMCOL 3
 #define DIMFILA 3
 
-#define DIMCOLSTR 20
-#define DIMFILASTR 20
+#define DIMCOLSTR 30
+#define DIMFILASTR 10
 
 // --------------------------------------------------
 // EJERCICIO 1
 void cargarMatriz (int matriz[][DIMCOL])
 {
-    for(int f = 0; f < DIMCOL; f++)
+    for(int f = 0; f < DIMFILA; f++)
     {
         for(int c = 0; c < DIMCOL; c++)
         {
@@ -27,7 +28,7 @@ void cargarMatriz (int matriz[][DIMCOL])
 // EJERCICIO 2
 void mostrarMatriz (int matriz[][DIMCOL])
 {
-    for(int f = 0; f < DIMCOL; f++)
+    for(int f = 0; f < DIMFILA; f++)
     {
         for(int c = 0; c < DIMCOL; c++)
         {
@@ -43,7 +44,7 @@ void mostrarMatriz (int matriz[][DIMCOL])
 void cargarMatrizRandom(int matriz[][DIMCOL])
 {
     srand(time(NULL));
-    for(int f = 0; f < DIMCOL; f++ )
+    for(int f = 0; f < DIMFILA; f++ )
     {
         for(int c = 0; c < DIMCOL; c++ )
         {
@@ -58,7 +59,7 @@ void cargarMatrizRandom(int matriz[][DIMCOL])
 int sumarMatriz (int matriz[][DIMCOL])
 {
     int sum = 0;
-    for(int f = 0; f < DIMCOL; f++)
+    for(int f = 0; f < DIMFILA; f++)
     {
         for(int c = 0; c < DIMCOL; c++)
         {
@@ -73,7 +74,7 @@ int sumarMatriz (int matriz[][DIMCOL])
 int cantElemMatriz (int matriz[][DIMCOL])
 {
     int cant = 0;
-    for (int f = 0; f < DIMCOL; f++)
+    for (int f = 0; f < DIMFILA; f++)
     {
         for (int c = 0; c < DIMCOL; c++)
         {
@@ -100,7 +101,7 @@ float promedioMatriz(int matriz[][DIMCOL])
 int buscarElemMatriz (int matriz[][DIMCOL], int num)
 {
     int flag = 0;
-    for(int f = 0; f < DIMCOL; f++)
+    for(int f = 0; f < DIMFILA; f++)
     {
         for(int c = 0; c < DIMCOL; c++)
         {
@@ -130,10 +131,10 @@ int cargarMatrizPalabras(char matrizStr[][DIMCOLSTR])
 {
     int i = 0;
     char control = 's';
-    while(control == 's' && i < DIMCOLSTR)
+    while(control == 's' && i < DIMFILASTR)
     {
         printf("Cargue una palabra:");
-        scanf(" %s",&matrizStr[i]);
+        scanf("%29s",matrizStr[i]);
         printf("Desea seguir 's/n':");
         scanf(" %c",&control);
         i++;
@@ -146,14 +147,41 @@ int cargarMatrizPalabras(char matrizStr[][DIMCOLSTR])
 // EJERCICIO 8
 void mostrarMatrizDeStr(char matrizStr[][DIMCOLSTR], int val)
 {
-    for(int i = 0; i < val; i++){
-        printf("|%s|",matrizStr[i]);
-        printf("\n");
+    for(int i = 0; i < val; i++)
+    {
+        printf("|%s|\n",matrizStr[i]);
     }
 }
 // --------------------------------------------------
 
+// --------------------------------------------------
+// EJERCICIO 9
+int buscarString (char matrizStr[][DIMCOLSTR],int val, char palabraBuscada[])
+{
+    int flag = -1;
+    for(int i = 0; i < val && flag == -1 ; i++)
+    {
+        if(strcmpi(matrizStr[i],palabraBuscada) == 0)
+        {
+            flag = i;
+        }
+    }
+    return flag;
+}
+// --------------------------------------------------
 
+// --------------------------------------------------
+void pedirPalabra(char palabra[])
+{
+    printf("Ingrese la palabra:");
+    fflush(stdin);
+    scanf("%29s",palabra);
+}
+// --------------------------------------------------
+
+// --------------------------------------------------
+// EJERCICIO 10
+// --------------------------------------------------
 
 
 int main()
@@ -166,6 +194,8 @@ int main()
     float promedio;
     int num;
     char matrizPalabras[DIMFILASTR][DIMCOLSTR];
+    int valPalabras;
+    char palabra[DIMCOLSTR];
 
     while(control == 's')
     {
@@ -176,6 +206,8 @@ int main()
         printf("Promedio MATRIZ == 5\n");
         printf("Encontrar NUM en MATRIZ == 6\n");
         printf("Cargar MATRIZ de PALABRAS == 7\n");
+        printf("Mostrar MATRIZ de PALABRAS == 8\n");
+        printf("Buscar String dentro de un arr == 9\n");
         printf("SALIR == 0\n");
         printf("\nIngrese una opcion:");
         scanf("%d",&opcion);
@@ -192,7 +224,7 @@ int main()
             break;
         case 4:
             res = sumarMatriz(matriz);
-            printf("La SUMA de la Matriz fue:%d",res);
+            printf("La SUMA de la Matriz fue:%d\n",res);
             break;
         case 5:
             promedio = promedioMatriz(matriz);
@@ -211,10 +243,22 @@ int main()
             }
             break;
         case 7:
-            res = cargarMatrizPalabras(matrizPalabras);
+            valPalabras = cargarMatrizPalabras(matrizPalabras);
             break;
         case 8:
-            mostrarMatrizDeStr(matrizPalabras,res);
+            mostrarMatrizDeStr(matrizPalabras,valPalabras);
+            break;
+        case 9:
+            pedirPalabra(palabra);
+            res = buscarString(matrizPalabras,valPalabras,palabra);
+            if(res != -1)
+            {
+                printf("La palabra se encuentra en la pos:%d\n",res);
+            }
+            else
+            {
+                printf("La palabra no se encontro\n");
+            }
             break;
         case 0:
             control = 'n';
