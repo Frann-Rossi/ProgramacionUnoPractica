@@ -1,6 +1,7 @@
 # depslib dependency file v1.0
-1775064975 source:c:\users\usuario\desktop\matrices\main.c
+1775494882 source:c:\users\usuario\desktop\matrices\main.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
+	<string.h>
 

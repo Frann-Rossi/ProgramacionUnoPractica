@@ -181,6 +181,64 @@ void pedirPalabra(char palabra[])
 
 // --------------------------------------------------
 // EJERCICIO 10
+int buscarStringArrOrdenado(char matrizArr[][DIMCOLSTR],int val, char palabra[])
+{
+    int flag = -1;
+    for(int i = 0; i < val ; i++)
+    {
+        if(strcmpi(matrizArr[i],palabra)== 0)
+        {
+            flag = i;
+        }
+    }
+    return flag;
+}
+// --------------------------------------------------
+
+// --------------------------------------------------
+// EJERCICIO 11
+// Ordenamiento por SELECCION
+int buscarPosMenor (char matriazStr[][DIMCOLSTR], int val, int pos)
+{
+    int posMenor = pos;
+    for(int i = posMenor + 1; i < val; i++ )
+    {
+        if(strcmpi(matriazStr[i],matriazStr[posMenor])<0)
+        {
+            posMenor = i;
+        }
+    }
+    return posMenor;
+}
+
+void ordenamientoPorSeleccion(char matrizStr[][DIMCOLSTR],int val)
+{
+    int menor;
+    char aux[DIMCOLSTR];
+    for(int i = 0; i < val; i++)
+    {
+        menor = buscarPosMenor(matrizStr,val,i);
+        strcpy(aux,matrizStr[i]);
+        strcpy(matrizStr[i],matrizStr[menor]);
+        strcpy(matrizStr[menor],aux);
+    }
+}
+
+// Ordenamiento por INSERCION
+void insertar(char matrizStr[][DIMCOLSTR],int val,char elem[DIMCOLSTR]){
+    int i = val - 1;
+    while(i >= 0 &&){
+
+    }
+
+}
+
+void ordenamientoPorInsercion(char matrizStr[][DIMCOLSTR],int val)
+{
+    for(int i = 0; i < val; i++)
+    {
+    }
+}
 // --------------------------------------------------
 
 
@@ -208,6 +266,8 @@ int main()
         printf("Cargar MATRIZ de PALABRAS == 7\n");
         printf("Mostrar MATRIZ de PALABRAS == 8\n");
         printf("Buscar String dentro de un arr == 9\n");
+        printf(" == 10\n");
+        printf("Ordenamiento por SELECCION == 11\n");
         printf("SALIR == 0\n");
         printf("\nIngrese una opcion:");
         scanf("%d",&opcion);
@@ -259,6 +319,22 @@ int main()
             {
                 printf("La palabra no se encontro\n");
             }
+            break;
+        case 10:
+            pedirPalabra(palabra);
+            res = buscarString(matrizPalabras,valPalabras,palabra);
+            if(res != -1)
+            {
+                printf("La palabra se encuentra en la pos:%d\n",res);
+            }
+            else
+            {
+                printf("La palabra no se encontro\n");
+            }
+            break;
+        case 11:
+            ordenamientoPorSeleccion(matrizPalabras,valPalabras);
+            mostrarMatrizDeStr(matrizPalabras,valPalabras);
             break;
         case 0:
             control = 'n';
