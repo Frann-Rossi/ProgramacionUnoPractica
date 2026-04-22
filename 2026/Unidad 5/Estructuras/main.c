@@ -10,6 +10,8 @@ typedef struct
     char genero; //m, f, o
 } stAlumno;
 
+// --------------------------------------------------
+// EJERCICIO 1
 stAlumno cargarAlum ()
 {
     stAlumno alum;
@@ -35,12 +37,15 @@ int cargarAlumnos(stAlumno arr[],int dim)
         arr[i] = cargarAlum();
         i++;
 
-        printf("\nDesea seguir cargando ALUMNOS:");
+        printf("\nDesea seguir cargando ALUMNOS 's/n':");
         scanf(" %c",&control);
     }
     return i;
 }
+// --------------------------------------------------
 
+// EJERCICIO 2
+// --------------------------------------------------
 void mostrarAlum (stAlumno alum)
 {
     printf("\nMATRICULA:%d",alum.matricula);
@@ -57,7 +62,36 @@ void mostrarAlumnos(stAlumno arr[],int val)
         printf("\n+++++\n");
     }
 }
+// --------------------------------------------------
 
+// EJERCICIO 3
+// --------------------------------------------------
+int pedirMatricula()
+{
+    int num;
+    printf("Ingrese Una MATRICULA:");
+    scanf("%d",&num);
+    return num;
+}
+
+int buscarAlumPorMatricula (stAlumno arr[], int val, int matriculaBuscada)
+{
+    int flag = -1;
+    for(int i = 0; i < val; i++)
+    {
+        if(matriculaBuscada == arr[i].matricula)
+        {
+            flag = i;
+        }
+    }
+    return flag;
+}
+// --------------------------------------------------
+
+// EJERCICIO 4
+// --------------------------------------------------
+
+// --------------------------------------------------
 
 int main()
 {
@@ -66,11 +100,16 @@ int main()
     int opcion;
 
     stAlumno arrAlumnos[DIM];
-    int val;
+    int val = 0;
+    int alumPorMatriculaBuscado;
+    int nroMatricula;
 
     while(control == 's')
     {
-        printf("ej1 == 1 \n");
+        printf("Cargar ALUMNOS == 1 \n");
+        printf("Mostrar ALUMNOS == 2 \n");
+        printf("Buscar ALUMNO por MATRICULA == 3 \n");
+        printf(" == 4 \n");
         printf("SALIR == 0 \n");
         printf("\nIngrese un valor:");
         scanf("%d",&opcion);
@@ -81,6 +120,18 @@ int main()
             break;
         case 2:
             mostrarAlumnos(arrAlumnos,val);
+            break;
+        case 3:
+            nroMatricula = pedirMatricula();
+            alumPorMatriculaBuscado = buscarAlumPorMatricula(arrAlumnos,val,nroMatricula);
+            if(alumPorMatriculaBuscado != -1)
+            {
+                mostrarAlum(arrAlumnos[alumPorMatriculaBuscado]);
+            }
+            else
+            {
+                printf("\nNo se encontro el alumno\n");
+            }
             break;
         case 0:
             control = 'n';
