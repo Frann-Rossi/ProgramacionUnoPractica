@@ -76,19 +76,30 @@ void calcularCantKm(Pila kms, int arr[],int* val)
 {
     int sum = 0;
     *val = 0;
+    int dato;
+
     while(!pilavacia(&kms))
     {
-        sum = desapilar(&kms);
-        if(sum != -1)
+        dato = desapilar(&kms);
+        if(dato != -1)
         {
-            sum += desapilar(&kms);
+            sum += dato;
         }
         else
         {
-            arr[*val] = sum;
-            sum = 0;
-            (*val)++;
+            if(sum > 0)
+            {
+                arr[*val] = sum;
+                (*val)++;
+                sum = 0;
+            }
         }
+    }
+
+     if(sum > 0)
+    {
+        arr[*val] = sum;
+        (*val)++;
     }
 }
 
