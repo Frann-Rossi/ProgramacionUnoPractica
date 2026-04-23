@@ -90,7 +90,37 @@ int buscarAlumPorMatricula (stAlumno arr[], int val, int matriculaBuscada)
 
 // EJERCICIO 4
 // --------------------------------------------------
+int posMenor (stAlumno arr[],int val, int pos)
+{
+    int menor = arr[pos].matricula;
+    int posMenor = pos;
+    for(int i = pos + 1; i < val; i++)
+    {
+        if(menor > arr[i].matricula)
+        {
+            posMenor = i;
+        }
+    }
+    return posMenor;
+}
 
+void ordenamientoPorSeleccion (stAlumno arr[],int val)
+{
+    int menor;
+    stAlumno aux;
+    for(int i = 0; i < val - 1; i++)
+    {
+        menor = posMenor(arr,val,i);
+        aux = arr[i];
+        arr[i] = arr[menor];
+        arr[menor] = aux;
+    }
+}
+
+// --------------------------------------------------
+
+// EJERCICIO 5
+// --------------------------------------------------
 // --------------------------------------------------
 
 int main()
@@ -109,7 +139,7 @@ int main()
         printf("Cargar ALUMNOS == 1 \n");
         printf("Mostrar ALUMNOS == 2 \n");
         printf("Buscar ALUMNO por MATRICULA == 3 \n");
-        printf(" == 4 \n");
+        printf("Ordenamiento por SELECCION == 4 \n");
         printf("SALIR == 0 \n");
         printf("\nIngrese un valor:");
         scanf("%d",&opcion);
@@ -132,6 +162,9 @@ int main()
             {
                 printf("\nNo se encontro el alumno\n");
             }
+            break;
+        case 4:
+            ordenamientoPorSeleccion(arrAlumnos,val);
             break;
         case 0:
             control = 'n';

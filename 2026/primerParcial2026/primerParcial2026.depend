@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1770385876 source:c:\users\usuario\desktop\primerparcial2026\pila.c
+	<stdio.h>
+	"pila.h"
+
+1770385876 c:\users\usuario\desktop\primerparcial2026\pila.h
+
+1776877404 source:c:\users\usuario\desktop\primerparcial2026\main.c
+	<stdio.h>
+	<stdlib.h>
+	"pila.h"
+
