@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define DIM 30
 
@@ -98,6 +99,7 @@ int posMenor (stAlumno arr[],int val, int pos)
     {
         if(menor > arr[i].matricula)
         {
+            menor =  arr[i].matricula;
             posMenor = i;
         }
     }
@@ -121,7 +123,86 @@ void ordenamientoPorSeleccion (stAlumno arr[],int val)
 
 // EJERCICIO 5
 // --------------------------------------------------
+void mostrarAlumnosPorGenero(stAlumno arr[],int val, char generoBuscar)
+{
+    for(int i = 0; i < val; i++)
+    {
+        if(generoBuscar == arr[i].genero)
+        {
+            printf("\n+++++");
+            mostrarAlum(arr[i]);
+            printf("\n+++++\n");
+        }
+    }
+}
+
+char pedirGenero()
+{
+    char genero;
+    printf("Ingrese un genero a buscar m/f:");
+    scanf(" %c",&genero);
+    return genero;
+}
 // --------------------------------------------------
+
+// EJERCICIO 6
+// --------------------------------------------------
+int insertarAlumno(stAlumno arr[], int val, stAlumno alum)
+{
+    int i = val -1;
+    while(i >= 0 && alum.matricula < arr[i].matricula)
+    {
+        arr[i+1] = arr[i];
+        i--;
+    }
+    arr[i + 1] = alum;
+    return val + 1;
+}
+// --------------------------------------------------
+
+// EJERCICIO 7
+// --------------------------------------------------
+void insertar(stAlumno arr[],int val,stAlumno elem)
+{
+    int i = val - 1;
+    stAlumno aux;
+    while(i >= 0 && strcmpi(elem.nombre,arr[i].nombre) < 0)
+    {
+        arr[i+1] = arr[i];
+        i--;
+    }
+    arr[i+1] = elem;
+}
+
+int ordenamientoPorInsercion (stAlumno arr[], int val)
+{
+    stAlumno aux;
+    for(int i = 0; i < val; i++)
+    {
+        aux = arr[i];
+        insertar(arr,i,aux);
+    }
+}
+
+// --------------------------------------------------
+
+// EJERCICIO 8
+// --------------------------------------------------
+int cantidadDeAlumPorGenero(stAlumno arr[],int val, char genero)
+{
+    int contador = 0;
+
+    for(int i = 0; i < val ; i++)
+    {
+        if(genero == arr[i].genero)
+        {
+            contador++;
+        }
+    }
+    return contador;
+}
+// --------------------------------------------------
+
 
 int main()
 {
@@ -133,15 +214,24 @@ int main()
     int val = 0;
     int alumPorMatriculaBuscado;
     int nroMatricula;
+    char genero;
+    stAlumno nuevoAlum;
+    int contadorDeAlum;
 
     while(control == 's')
     {
-        printf("Cargar ALUMNOS == 1 \n");
-        printf("Mostrar ALUMNOS == 2 \n");
-        printf("Buscar ALUMNO por MATRICULA == 3 \n");
-        printf("Ordenamiento por SELECCION == 4 \n");
-        printf("SALIR == 0 \n");
-        printf("\nIngrese un valor:");
+        printf("\n========= MENU PRINCIPAL =========\n");
+        printf("1. Cargar alumnos\n");
+        printf("2. Mostrar todos los alumnos\n");
+        printf("3. Buscar alumno por matricula\n");
+        printf("4. Ordenar alumnos por matricula (Seleccion)\n");
+        printf("5. Mostrar alumnos por genero\n");
+        printf("6. Insertar alumno (ordenado por matricula)\n");
+        printf("7. Ordenar alumnos por nombre (Insercion)\n");
+        printf("8. Contar alumnos por genero\n");
+        printf("0. Salir\n");
+        printf("==================================\n");
+        printf("Ingrese una opcion: ");
         scanf("%d",&opcion);
         switch(opcion)
         {
@@ -165,6 +255,29 @@ int main()
             break;
         case 4:
             ordenamientoPorSeleccion(arrAlumnos,val);
+            break;
+        case 5:
+            genero = pedirGenero();
+            mostrarAlumnosPorGenero(arrAlumnos,val,genero);
+            break;
+        case 6:
+            nuevoAlum = cargarAlum();
+            val = insertarAlumno(arrAlumnos,val,nuevoAlum);
+            break;
+        case 7:
+            ordenamientoPorInsercion(arrAlumnos,val);
+            break;
+        case 8:
+            genero = pedirGenero();
+            contadorDeAlum = cantidadDeAlumPorGenero(arrAlumnos,val,genero);
+            if(contadorDeAlum > 0)
+            {
+                printf("Cantidad de alumnos del genero %c: %d\n", genero, contadorDeAlum);
+            }
+            else
+            {
+                printf("NO hay alumnos del genero|%c|",genero);
+            }
             break;
         case 0:
             control = 'n';

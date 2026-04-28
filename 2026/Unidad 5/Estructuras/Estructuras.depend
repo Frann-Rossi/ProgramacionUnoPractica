@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1776808091 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\unidad 5\estructuras\main.c
+1777332171 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\unidad 5\estructuras\main.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
 
 1776867273 source:c:\users\usuario\desktop\estructuras\main.c
 	<stdio.h>
