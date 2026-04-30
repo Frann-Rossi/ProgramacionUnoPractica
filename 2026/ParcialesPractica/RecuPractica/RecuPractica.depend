@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1777564625 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\parcialespractica\recupractica\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"pila.h"
+
+1773751283 c:\users\frann\onedrive\desktop\programacionunopractica\2026\parcialespractica\recupractica\pila.h
+
+1773751283 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\parcialespractica\recupractica\pila.c
+	<stdio.h>
+	"pila.h"
+
