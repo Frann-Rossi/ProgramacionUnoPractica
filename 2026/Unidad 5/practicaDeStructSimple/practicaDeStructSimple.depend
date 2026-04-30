@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1777571052 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\unidad 5\practicadestructsimple\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
