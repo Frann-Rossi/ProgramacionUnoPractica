@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="RecuPractica" />
+		<Option title="SGVV(Parcial)1erCuatri" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/RecuPractica" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/SGVV(Parcial)1erCuatri" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -16,7 +16,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/RecuPractica" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/SGVV(Parcial)1erCuatri" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -38,14 +38,14 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="menu.h" />
-		<Unit filename="nombres.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="nombres.h" />
 		<Unit filename="pila.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="pila.h" />
+		<Unit filename="vendedores.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="vendedores.h" />
 		<Unit filename="ventas.c">
 			<Option compilerVar="CC" />
 		</Unit>

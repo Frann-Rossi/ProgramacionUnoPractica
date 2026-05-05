@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1777935228 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\finalesdec\sgvv(parcial)1ercuatri\main.c
+	<stdio.h>
+	"menu.h"
+
+1773751283 c:\users\frann\onedrive\desktop\programacionunopractica\2026\finalesdec\sgvv(parcial)1ercuatri\pila.h
+
+1777933505 c:\users\frann\onedrive\desktop\programacionunopractica\2026\finalesdec\sgvv(parcial)1ercuatri\menu.h
+
+1777984215 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\finalesdec\sgvv(parcial)1ercuatri\menu.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+	"ventas.h"
+	"vendedores.h"
+
+1773751283 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\finalesdec\sgvv(parcial)1ercuatri\pila.c
+	<stdio.h>
+	"pila.h"
+
+1777982123 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\finalesdec\sgvv(parcial)1ercuatri\ventas.c
+	<stdio.h>
+	"pila.h"
+
+1777936584 c:\users\frann\onedrive\desktop\programacionunopractica\2026\finalesdec\sgvv(parcial)1ercuatri\ventas.h
+
+1777982769 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\finalesdec\sgvv(parcial)1ercuatri\vendedores.c
+	<stdio.h>
+	<string.h>
+	"vendedores.h"
+
+1777984232 c:\users\frann\onedrive\desktop\programacionunopractica\2026\finalesdec\sgvv(parcial)1ercuatri\vendedores.h
+

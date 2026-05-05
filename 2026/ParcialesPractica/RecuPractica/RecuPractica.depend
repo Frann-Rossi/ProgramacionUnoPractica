@@ -1,13 +1,38 @@
 # depslib dependency file v1.0
-1777564625 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\parcialespractica\recupractica\main.c
+1777932211 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\parcialespractica\recupractica\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"pila.h"
+	"menu.h"
+	"ventas.h"
+	"nombres.h"
 
 1773751283 c:\users\frann\onedrive\desktop\programacionunopractica\2026\parcialespractica\recupractica\pila.h
 
 1773751283 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\parcialespractica\recupractica\pila.c
 	<stdio.h>
 	"pila.h"
+
+1777931693 c:\users\frann\onedrive\desktop\programacionunopractica\2026\parcialespractica\recupractica\menu.h
+
+1777931819 c:\users\frann\onedrive\desktop\programacionunopractica\2026\parcialespractica\recupractica\ventas.h
+	"pila.h"
+
+1777931766 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\parcialespractica\recupractica\menu.c
+	<stdio.h>
+	"menu.h"
+
+1777932246 c:\users\frann\onedrive\desktop\programacionunopractica\2026\parcialespractica\recupractica\nombres.h
+
+1777932246 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\parcialespractica\recupractica\ventas.c
+	<stdio.h>
+	<stdlib.h>
+	"pila.h"
+	"ventas.h"
+
+1777932661 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\parcialespractica\recupractica\nombres.c
+	<stdio.h>
+	<stdlib.h>
+	"nombres.h"
 
