@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1778038340 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\unidad 6\archivos\main.c
+	"menu.h"
+
+1778037971 c:\users\frann\onedrive\desktop\programacionunopractica\2026\unidad 6\archivos\menu.h
+
+1778040691 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\unidad 6\archivos\menu.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"alumno.h"
+
+1778040706 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\unidad 6\archivos\alumno.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"alumno.h"
+
+1778040699 c:\users\frann\onedrive\desktop\programacionunopractica\2026\unidad 6\archivos\alumno.h
+
