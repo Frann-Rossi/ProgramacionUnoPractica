@@ -18,3 +18,29 @@
 
 1778040699 c:\users\frann\onedrive\desktop\programacionunopractica\2026\unidad 6\archivos\alumno.h
 
+1778081539 source:c:\users\usuario\desktop\archivos\alumno.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"alumno.h"
+
+1778079884 c:\users\usuario\desktop\archivos\alumno.h
+
+1778085046 source:c:\users\usuario\desktop\archivos\main.c
+	"menu.h"
+
+1778085046 c:\users\usuario\desktop\archivos\menu.h
+
+1778085359 source:c:\users\usuario\desktop\archivos\menu.c
+	<stdio.h>
+	<stdlib.h>
+	"alumno.h"
+	"arreglo.h"
+
+1778088422 source:c:\users\usuario\desktop\archivos\arreglo.c
+	<stdio.h>
+	<stdlib.h>
+	"arreglo.h"
+
+1778088400 c:\users\usuario\desktop\archivos\arreglo.h
+
