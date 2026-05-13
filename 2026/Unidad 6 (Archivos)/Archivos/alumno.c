@@ -72,33 +72,3 @@ void mostrarAlumnos(char archivo[])
         printf("Error al abrir el archivo.\n");
     }
 }
-
-// ==================================================
-int cargarAlumnosRecu(stAlumno arr[],int dim,int i)
-{
-    char control = 's';
-    int val = 0;
-    if(i < dim)
-    {
-        arr[i] = cargarAlumno();
-        val++;
-        printf("Desea seguir cargando 's/n':");
-        scanf(" %c",&control);
-        if(control == 's')
-            {
-
-                val += cargarAlumnosRecu(arr,dim,i+1);
-            }
-    }
-    return val;
-}
-
-void mostrarAlumnosRecu(stAlumno arr[],int val,int i)
-{
-    if(i < val)
-    {
-        mostrarAlumno(arr[i]);
-        mostrarAlumnosRecu(arr,val,i+1);
-    }
-}
-// ==================================================

@@ -35,10 +35,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="alumno.h" />
-		<Unit filename="arreglo.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="arreglo.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

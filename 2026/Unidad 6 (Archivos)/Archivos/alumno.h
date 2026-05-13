@@ -16,8 +16,5 @@ void cargarAlumnosEnArchivo(char archivo[]);
 void mostrarAlumno(stAlumno alumno);
 void mostrarAlumnos(char archivo[]);
 
-//Recursividad
-int cargarAlumnosRecu(stAlumno arr[],int dim,int i);
-void mostrarAlumnosRecu(stAlumno arr[],int val,int i);
 
 #endif

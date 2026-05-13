@@ -33,9 +33,6 @@ void mostrarMenu()
     printf("15 - Modificar alumno\n");
     printf("16 - Invertir archivo\n");
 
-    printf("17 - Cargar y Mostrar Recursividad\n");
-    printf("18 - ARR DIM\n");
-
     printf("0  - Salir\n");
 
     printf("====================================\n");
@@ -53,9 +50,6 @@ void menu()
     stAlumno arrAlumnos[DIM];
     int i = 0;
     int val = 0;
-    int arrNum[DIM];
-    int valPares = 0;
-    int* arrDinamicoPares;
 
     while(control == 's')
     {
@@ -74,17 +68,6 @@ void menu()
         case 17:
             val = cargarAlumnosRecu(arrAlumnos,DIM,i);
             mostrarAlumnosRecu(arrAlumnos,val,i);
-            break;
-        case 18:
-            val = cargarArr(arrNum,DIM);
-            mostrarArr(arrNum,val);
-            valPares = cantNumPares(arrNum,val);
-            arrDinamicoPares = cant(valPares);
-            printf("\n");
-            pasarArrAArrDim(arrNum,val,arrDinamicoPares);
-            mostrarArr(arrDinamicoPares,valPares);
-            break;
-        case 19:
             break;
         case 0:
             control = 'n';
