@@ -227,16 +227,21 @@ void ordenamientoPorSeleccion(char matrizStr[][DIMCOLSTR],int val)
 // Ordenamiento por INSERCION
 void insertar(char matrizStr[][DIMCOLSTR],int val,char elem[DIMCOLSTR]){
     int i = val - 1;
-    while(i >= 0 &&){
-
+    while(i >= 0 && strcmpi(elem,matrizStr[i])< 0){
+        strcpy(matrizStr[i+1],matrizStr[i]);
+        i--;
     }
+    strcpy(matrizStr[i+1],elem);
 
 }
 
 void ordenamientoPorInsercion(char matrizStr[][DIMCOLSTR],int val)
 {
-    for(int i = 0; i < val; i++)
+    char aux[DIMCOLSTR];
+    for(int i = 1; i < val; i++)
     {
+        strcpy(aux,matrizStr[i]);
+        insertar(matrizStr,val,aux);
     }
 }
 // --------------------------------------------------
