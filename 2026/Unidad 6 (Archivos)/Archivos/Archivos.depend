@@ -44,3 +44,31 @@
 
 1778088400 c:\users\usuario\desktop\archivos\arreglo.h
 
+1778038340 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\unidad 6 (archivos)\archivos\main.c
+	"menu.h"
+
+1778037971 c:\users\frann\onedrive\desktop\programacionunopractica\2026\unidad 6 (archivos)\archivos\menu.h
+
+1779144755 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\unidad 6 (archivos)\archivos\alumno.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"alumno.h"
+
+1779146871 c:\users\frann\onedrive\desktop\programacionunopractica\2026\unidad 6 (archivos)\archivos\alumno.h
+	"pila.h"
+
+1779146886 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\unidad 6 (archivos)\archivos\menu.c
+	<stdio.h>
+	<stdlib.h>
+	"alumno.h"
+	"pila.h"
+
+1778264238 c:\users\frann\onedrive\desktop\programacionunopractica\2026\unidad 6 (archivos)\archivos\arreglo.h
+
+1773751283 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\unidad 6 (archivos)\archivos\pila.c
+	<stdio.h>
+	"pila.h"
+
+1773751283 c:\users\frann\onedrive\desktop\programacionunopractica\2026\unidad 6 (archivos)\archivos\pila.h
+

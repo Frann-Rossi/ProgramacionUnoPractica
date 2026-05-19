@@ -2,8 +2,7 @@
 #include <stdlib.h>
 
 #include "alumno.h"
-#include "arreglo.h"
-
+#include "pila.h"
 
 void mostrarMenu()
 {
@@ -45,11 +44,16 @@ void menu()
     char control = 's';
     int opcion;
 
-    char archi[] = "archi.dat";
+    char archi[] = "archi.bin";
+    Pila pila;
+    inicpila(&pila);
+    int edad;
+    int res = 0;
+    int anio;
 
     stAlumno arrAlumnos[DIM];
-    int i = 0;
     int val = 0;
+    char archiArr[] = "archiArr.bin";
 
     while(control == 's')
     {
@@ -63,11 +67,40 @@ void menu()
             cargarAlumnosEnArchivo(archi);
             break;
         case 5:
-            mostrarAlumnos(archi);
+            mostrarAlumnosArchivo(archi);
             break;
-        case 17:
-            val = cargarAlumnosRecu(arrAlumnos,DIM,i);
-            mostrarAlumnosRecu(arrAlumnos,val,i);
+        case 6:
+            agregarAlumno(archi);
+            break;
+        case 7:
+            pasarLegajosAPila(archi,&pila);
+            mostrar(&pila);
+            break;
+        case 8:
+            edad = pedirEntero("Ingrese una edad: ");
+            res  = contarCantDeAlumnosMayorDeEdad(archi,edad);
+            printf("La canidad de alumonos por la edad pasada fueron:%d\n",res);
+            break;
+        case 9:
+            mostrarAlumnosEnRango(archi,29,32);
+            break;
+        case 10:
+            mostrarAlumnosMayorDeEdad(archi);
+            break;
+        case 11:
+            anio = pedirEntero("Ingrese un anio: ");
+            res = cantidadDeAlumnosPorAnio (archi,edad);
+            printf("La canidad de alumonos por el anio elejido es de:%d\n",res);
+            break;
+        case 12:
+            printf("\n=====ARR=====\n");
+            val = pasarArchiAArr(archi,arrAlumnos,DIM);
+            mostrarAlumnos(arrAlumnos,val);
+            printf("\n=====ARCHIVO=====\n");
+            pasarArrAArchi(arrAlumnos,val,archiArr);
+            mostrarAlumnosArchivo(archiArr);
+            break;
+        case 13:
             break;
         case 0:
             control = 'n';
