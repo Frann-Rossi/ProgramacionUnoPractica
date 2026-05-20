@@ -10,9 +10,39 @@ typedef struct
 //año que cursa, recordar que no podemos utilizar la ñ para definir variables
 } stAlumno;
 
+void menu()
+{
+    printf("\n====================================\n");
+    printf(" TP - ARREGLOS DINAMICOS\n");
+    printf("====================================\n");
+
+    printf("1  - Pasar numeros pares a arreglo dinamico\n");
+
+    printf("2  - Pasar archivo de alumnos a arreglo dinamico\n");
+
+    printf("3  - Filtrar alumnos mayores a edad dada\n");
+
+    printf("4  - Unir dos arreglos dinamicos enteros\n");
+
+    printf("5  - Duplicar tamanio de arreglo dinamico\n");
+
+    printf("6  - Agregar elemento al final del arreglo dinamico\n");
+
+    printf("0  - Salir\n");
+
+    printf("====================================\n");
+    printf("Seleccione una opcion: ");
+}
+
 void arrDin(stAlumno** arr, int val)
 {
     (*arr) = malloc(val * sizeof(stAlumno));
+}
+
+stAlumno* arrDinP (stAlumno* arr,int val)
+{
+    arr = malloc(val * sizeof(stAlumno));
+    return arr;
 }
 
 int cantArchi (char archivo[])
@@ -71,6 +101,34 @@ void mostrarAlumnos(stAlumno arr[],int val)
     }
 }
 
+int contarMayores(stAlumno arr[],int val)
+{
+    int cant = 0;
+    for(int i = 0; i < val; i++)
+    {
+        if(arr[i].edad >= 18)
+        {
+            cant++;
+        }
+    }
+    return cant;
+}
+
+void pasarArrAOtro(stAlumno arr[],stAlumno** arr2, int val)
+{
+    int cantMayores = contarMayores(arr,val);
+    arrDin(arr2,cantMayores);
+    int j = 0;
+    for(int i = 0; i < val; i++)
+    {
+        if(arr[i].edad >= 18)
+        {
+            (*arr2)[j] = arr[i];
+            j++;
+        }
+    }
+}
+
 int main()
 {
     char control = 's';
@@ -78,12 +136,14 @@ int main()
 
     char archi[] = "archi.bin";
     stAlumno *arrAlum;
+    stAlumno *arrAlumMayores;
     int val = 0;
+    int cantMayores = 0;
+    //stAlumno *arrAlumP;
 
     while(control == 's')
     {
-        printf("Ej 1 == 1\n");
-        printf("\nIngrese un valor:");
+        menu();
         scanf("%d",&opcion);
         switch(opcion)
         {
@@ -92,6 +152,12 @@ int main()
             arrDin(&arrAlum,val);
             pasarArchiAArr(archi,arrAlum,val);
             mostrarAlumnos(arrAlum,val);
+            //arrAlumP = arrDinP(arrAlumP,val);
+            break;
+        case 2:
+            cantMayores = contarMayores(arrAlum,val);
+            pasarArrAOtro(arrAlum,&arrAlumMayores,val);
+            mostrarAlumnos(arrAlumMayores,cantMayores);
             break;
         case 0:
             control = 'n';
