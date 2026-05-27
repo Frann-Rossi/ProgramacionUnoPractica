@@ -28,6 +28,8 @@ void menu()
 
     printf("6  - Agregar elemento al final del arreglo dinamico\n");
 
+    printf("7  - Pasar archivo de alumnos a Archivo filtando edad \n");
+
     printf("0  - Salir\n");
 
     printf("====================================\n");
@@ -114,18 +116,57 @@ int contarMayores(stAlumno arr[],int val)
     return cant;
 }
 
-void pasarArrAOtro(stAlumno arr[],stAlumno** arr2, int val)
+void pasarArrAOtro(stAlumno arr[],stAlumno** arr2, int val,int edad)
 {
     int cantMayores = contarMayores(arr,val);
     arrDin(arr2,cantMayores);
     int j = 0;
     for(int i = 0; i < val; i++)
     {
-        if(arr[i].edad >= 18)
+        if(arr[i].edad > edad)
         {
             (*arr2)[j] = arr[i];
             j++;
         }
+    }
+}
+
+void pasarArchiAOtro(char archi[],char archi2[],int edad)
+{
+    FILE* buffer = fopen(archi,"rb");
+    FILE* buffer2 = fopen(archi2,"wb");
+    stAlumno alumnno;
+    if(buffer && buffer2)
+    {
+        while(fread(&alumnno,sizeof(stAlumno),1,buffer)>0)
+        {
+            if(alumnno.edad >= edad)
+            {
+                fwrite(&alumnno,sizeof(stAlumno),1,buffer2);
+            }
+        }
+        fclose(buffer);
+        fclose(buffer2);
+    }
+    else
+    {
+        printf("Error al abrir el archivo\n");
+    }
+}
+
+void mostrarAlumnosArchi(FILE* buffer)
+{
+    stAlumno alumnno;
+    if(buffer)
+    {
+        while(fread(&alumnno,sizeof(stAlumno),1,buffer)>0)
+        {
+            mostrarAlumno(alumnno);
+        }
+    }
+    else
+    {
+        printf("Error al abrir el archivo\n");
     }
 }
 
@@ -135,11 +176,13 @@ int main()
     int opcion;
 
     char archi[] = "archi.bin";
+    char archi2[] = "archi2.bin";
     stAlumno *arrAlum;
     stAlumno *arrAlumMayores;
     int val = 0;
     int cantMayores = 0;
     //stAlumno *arrAlumP;
+    FILE* buffer;
 
     while(control == 's')
     {
@@ -156,8 +199,14 @@ int main()
             break;
         case 2:
             cantMayores = contarMayores(arrAlum,val);
-            pasarArrAOtro(arrAlum,&arrAlumMayores,val);
+            pasarArrAOtro(arrAlum,&arrAlumMayores,val,18);
             mostrarAlumnos(arrAlumMayores,cantMayores);
+            break;
+        case 7:
+            pasarArchiAOtro(archi,archi2,18);
+            buffer = fopen(archi2,"rb");
+            mostrarAlumnosArchi(buffer);
+            fclose(buffer);
             break;
         case 0:
             control = 'n';
