@@ -15,6 +15,7 @@ typedef struct
 } stMascota;
 
 stMascota cargarUnaMascota(char archi[]);
+void cargarEspecie(char especie[]);
 void cargarMascotaArchi (char archi[]);
 void mostrarUnaMascota(stMascota mascota);
 void mostrarMascotasArchi(char archi[]);

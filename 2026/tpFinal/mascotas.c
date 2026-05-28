@@ -24,8 +24,7 @@ stMascota cargarUnaMascota(char archi[])
     while(idExistenteMascota(archi, mascota.idMascota));
     printf("\nNombre Mascota:");
     scanf("%s",mascota.nombre);
-    printf("\nEspecie Mascota:");
-    scanf("%s",mascota.especie);
+    cargarEspecie(mascota.especie);
     printf("\nRaza Mascota:");
     scanf("%s",mascota.raza);
     printf("\nEdad Mascota:");
@@ -33,6 +32,38 @@ stMascota cargarUnaMascota(char archi[])
     printf("\nID Duenio:");
     scanf("%d",&mascota.idDuenio);
     return mascota;
+}
+void cargarEspecie(char especie[])
+{
+    char especies[][DIM] =
+    {
+        "Perro",
+        "Gato",
+        "Pajaro",
+        "Otro"
+    };
+
+    int opcion;
+
+    printf("\n====== ESPECIE ======\n");
+
+    for(int i = 0; i < 4; i++)
+    {
+        printf("%d. %s\n", i + 1, especies[i]);
+    }
+
+    printf("Seleccione una opcion: ");
+    scanf("%d",&opcion);
+
+    if(opcion >= 1 && opcion <= 4)
+    {
+        strcpy(especie, especies[opcion - 1]);
+    }
+    else
+    {
+        printf("\n[ERROR] Opcion invalida.\n");
+        strcpy(especie,"Desconocido");
+    }
 }
 
 /*
@@ -267,7 +298,7 @@ void insertar(stMascota arr[],int val,stMascota elem)
 {
     int i = val - 1;
 
-    while(i >= 0 && strcmpi(elem.nombre,arr[i].nombre)<0)
+    while(i >= 0 && elem.edad < arr[i].edad)
     {
         arr[i+1] = arr[i];
         i--;

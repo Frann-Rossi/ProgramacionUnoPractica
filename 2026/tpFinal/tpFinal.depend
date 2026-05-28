@@ -22,14 +22,14 @@
 
 1779984692 c:\users\frann\onedrive\desktop\programacionunopractica\2026\tpfinal\menu.h
 
-1779988400 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\tpfinal\menu.c
+1779989874 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\tpfinal\menu.c
 	<stdio.h>
 	<stdlib.h>
 	"menu.h"
 	"utilidades.h"
 	"mascotas.h"
 
-1779989653 c:\users\frann\onedrive\desktop\programacionunopractica\2026\tpfinal\mascotas.h
+1779992284 c:\users\frann\onedrive\desktop\programacionunopractica\2026\tpfinal\mascotas.h
 
 1779989635 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\tpfinal\mascotas.c
 	<stdio.h>
