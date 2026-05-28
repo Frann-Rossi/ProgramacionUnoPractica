@@ -22,26 +22,45 @@
 
 1779984692 c:\users\frann\onedrive\desktop\programacionunopractica\2026\tpfinal\menu.h
 
-1779989874 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\tpfinal\menu.c
+1779997788 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\tpfinal\menu.c
 	<stdio.h>
 	<stdlib.h>
 	"menu.h"
 	"utilidades.h"
 	"mascotas.h"
+	"duenios.h"
+	"pila.h"
 
-1779992284 c:\users\frann\onedrive\desktop\programacionunopractica\2026\tpfinal\mascotas.h
+1779998386 c:\users\frann\onedrive\desktop\programacionunopractica\2026\tpfinal\mascotas.h
+	"pila.h"
+	"mascotas.h"
+	"duenios.h"
 
-1779989635 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\tpfinal\mascotas.c
+1779998391 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\tpfinal\mascotas.c
 	<stdio.h>
 	<stdlib.h>
-	<string.h>
 	"mascotas.h"
 
-1779987651 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\tpfinal\utilidades.c
+1779994719 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\tpfinal\utilidades.c
 	<stdio.h>
 	<stdlib.h>
 	"utilidades.h"
 
-1779987231 c:\users\frann\onedrive\desktop\programacionunopractica\2026\tpfinal\utilidades.h
+1779995361 c:\users\frann\onedrive\desktop\programacionunopractica\2026\tpfinal\utilidades.h
 	"mascotas.h"
+	"duenios.h"
+
+1779996396 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\tpfinal\duenios.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"duenios.h"
+
+1779996392 c:\users\frann\onedrive\desktop\programacionunopractica\2026\tpfinal\duenios.h
+
+1773751283 source:c:\users\frann\onedrive\desktop\programacionunopractica\2026\tpfinal\pila.c
+	<stdio.h>
+	"pila.h"
+
+1773751283 c:\users\frann\onedrive\desktop\programacionunopractica\2026\tpfinal\pila.h
 

@@ -4,6 +4,8 @@
 #include "menu.h"
 #include "utilidades.h"
 #include "mascotas.h"
+#include "duenios.h"
+#include "pila.h"
 
 void menuMascotasTxt()
 {
@@ -14,7 +16,9 @@ void menuMascotasTxt()
     printf("4. Eliminar Mascota\n");
     printf("5. Buscar Mascota por ID\n");
     printf("6. Pasar Archivo a Arreglo\n");
-    printf("7. Ordenar Mascotas por Nombre\n");
+    printf("7. Ordenar Mascotas por Edad\n");
+    printf("8. Mostrar IDs Eliminados (Pila)\n");
+    printf("9. Mostrar Mascotas con sus Duenios\n");
     printf("0. Volver al Menu Principal\n");
     printf("=====================================\n");
     printf("Ingrese una opcion: ");
@@ -26,9 +30,13 @@ void menuMascotas()
     int opcion;
 
     char archivoMascotas[] = "mascotasArchi.bin";
+    char archivoDuenios[] = "dueniosArchi.bin";
     stMascota *arrMascotas;
     int cantElem = 0;
     int id;
+
+    Pila pilasEliminadas;
+    inicpila(&pilasEliminadas);
 
     while(control == 's' || control == 'S')
     {
@@ -48,7 +56,7 @@ void menuMascotas()
             break;
         case 4:
             id = pedirNum("Ingrese un id para Eliminar la mascota:");
-            eliminarMascota(archivoMascotas,id);
+            eliminarMascota(archivoMascotas,id,&pilasEliminadas);
             break;
         case 5:
             id = pedirNum("Ingrese un id para Buscar la mascota:");
@@ -57,12 +65,18 @@ void menuMascotas()
         case 6:
             cantElem = cantidadElemArchiMascotas(archivoMascotas);
             crearArregloDinamicoMascotas(&arrMascotas,cantElem);
-            pasarArchiToArr(archivoMascotas,arrMascotas,cantElem);
+            pasarArchiToArrMascotas(archivoMascotas,arrMascotas,cantElem);
             mostrarMascotasArr(arrMascotas,cantElem);
             break;
         case 7:
             ordenamientoPorInsercion(arrMascotas,cantElem);
             mostrarMascotasArr(arrMascotas,cantElem);
+            break;
+        case 8:
+            mostrar(&pilasEliminadas);
+            break;
+        case 9:
+            mostrarMascotasConDuenios(archivoMascotas,archivoDuenios);
             break;
         case 0:
             control = 'n';
@@ -71,25 +85,22 @@ void menuMascotas()
         default:
             printf("\n[ERROR] Opcion invalida.\n");
         }
-        if(control == 's' || control == 'S')
-        {
-            printf("\nDesea seguir en el programa 's/n':");
-            scanf(" %c",&control);
-        }
     }
 }
 
 
 void menuDueniosTxt()
 {
-    printf("\n======= MENU DE DUENIOS =======\n");
+    printf("\n=========== MENU DUENIOS ===========\n");
     printf("1. Cargar Duenio\n");
     printf("2. Mostrar Duenios\n");
     printf("3. Modificar Duenio\n");
     printf("4. Eliminar Duenio\n");
     printf("5. Buscar Duenio por ID\n");
+    printf("6. Pasar Archivo a Arreglo\n");
+    printf("7. Mostrar Arreglo de Duenios\n");
     printf("0. Volver al Menu Principal\n");
-    printf("================================\n");
+    printf("====================================\n");
     printf("Ingrese una opcion: ");
 }
 
@@ -101,25 +112,49 @@ void menuDuenios()
     char archivoDuenios[] = "dueniosArchi.bin";
     int id;
 
+    stDuenio arrDuenios[DIM];
+    int validos = 0;
+
     while(control == 's' || control == 'S')
     {
         menuDueniosTxt();
         scanf("%d",&opcion);
+
         switch(opcion)
         {
         case 1:
+            cargarDueniosArchi(archivoDuenios);
+            break;
+        case 2:
+            mostrarDueniosArchi(archivoDuenios);
+            break;
+        case 3:
+            id = pedirNum("Ingrese un ID para modificar el duenio:");
+            modificarDuenio(archivoDuenios,id);
+            break;
+        case 4:
+            id = pedirNum("Ingrese un ID para eliminar el duenio:");
+            eliminarDuenio(archivoDuenios,id);
+            break;
+        case 5:
+            id = pedirNum("Ingrese un ID para buscar el duenio:");
+            buscarDuenioPorId(archivoDuenios,id);
+            break;
+        case 6:
+            validos = cantidadElemArchiDuenios(archivoDuenios);
+            pasarArchiToArrDuenios(archivoDuenios,arrDuenios,validos);
+            printf("\n[OK] Archivo pasado al arreglo correctamente.\n");
+            break;
+        case 7:
+            mostrarDueniosArr(arrDuenios,validos);
             break;
         case 0:
             control = 'n';
             printf("\n[INFO] Volviendo al menu principal...\n");
             break;
+
         default:
             printf("\n[ERROR] Opcion invalida.\n");
-        }
-        if(control == 's' || control == 'S')
-        {
-            printf("\nDesea seguir en el programa 's/n':");
-            scanf(" %c",&control);
         }
     }
 }
@@ -138,9 +173,6 @@ void menu()
 {
     char control = 's';
     int opcion;
-
-    char archivoMascotas[] = "mascotasArchi.bin";
-    int id;
 
     while(control == 's' || control == 'S')
     {

@@ -40,6 +40,30 @@ int cantidadElemArchiMascotas(char archi[])
     }
     return cant;
 }
+
+int cantidadElemArchiDuenios(char archi[])
+{
+    FILE* buffer = fopen(archi,"rb");
+    stDuenio duenio;
+    int cant = 0;
+
+    if(buffer)
+    {
+        while(fread(&duenio,sizeof(stDuenio),1,buffer)>0)
+        {
+            if(duenio.eliminado == 0)
+            {
+                cant++;
+            }
+        }
+        fclose(buffer);
+    }
+    else
+    {
+        printf("Error al abrir el archivo.\n");
+    }
+    return cant;
+}
 /*
 int cantidadElemArchiMascotas(char archi[])
 {

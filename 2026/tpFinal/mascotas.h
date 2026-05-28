@@ -3,6 +3,10 @@
 
 #define DIM 30
 
+#include "pila.h"
+#include "mascotas.h"
+#include "duenios.h"
+
 typedef struct
 {
     int idMascota;
@@ -22,11 +26,13 @@ void mostrarMascotasArchi(char archi[]);
 int idExistenteMascota(char archi[],int id);
 void modificarMascota(char archivo[],int id);
 int pedirNum(char msj[]);
-void eliminarMascota(char archivo[],int id);
+void eliminarMascota(char archivo[],int id, Pila* pila);
 void buscarMascotaPorId (char archivo[],int id);
-void pasarArchiToArr(char archi[],stMascota arr[], int dim);
+void pasarArchiToArrMascotas(char archi[],stMascota arr[], int dim);
 void mostrarMascotasArr(stMascota arr[],int val);
 void insertar(stMascota arr[],int val,stMascota elem);
 void ordenamientoPorInsercion(stMascota arr[],int val);
+void mostrarMascotasConDuenios(char archiMascotas[],char archiDuenios[]);
+void mostrarUnaMascotaConDuenio(stMascota mascota, stDuenio duenio);
 
 #endif

@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+
 #include "mascotas.h"
+
 
 stMascota cargarUnaMascota(char archi[])
 {
@@ -200,7 +201,7 @@ void modificarMascota(char archivo[],int id)
     }
 }
 
-void eliminarMascota(char archivo[],int id)
+void eliminarMascota(char archivo[],int id, Pila* pila)
 {
     FILE* buffer = fopen(archivo,"r+b");
     stMascota mascota;
@@ -213,6 +214,7 @@ void eliminarMascota(char archivo[],int id)
             {
                 printf("\n======= ELIMINAR MASCOTA =======\n");
                 fseek(buffer, -sizeof(stMascota), SEEK_CUR);
+                apilar(pila,id);
                 mascota.eliminado = 1;
                 fwrite(&mascota,sizeof(stMascota),1,buffer);
                 encontrado = 1;
@@ -260,7 +262,7 @@ void buscarMascotaPorId (char archivo[],int id)
     }
 }
 
-void pasarArchiToArr(char archi[],stMascota arr[], int dim)
+void pasarArchiToArrMascotas(char archi[],stMascota arr[], int dim)
 {
     FILE* buffer = fopen(archi,"rb");
     stMascota mascota;
@@ -313,3 +315,54 @@ void ordenamientoPorInsercion(stMascota arr[],int val)
         insertar(arr,i,arr[i]);
     }
 }
+
+void mostrarMascotasConDuenios(char archiMascotas[],char archiDuenios[])
+{
+    FILE* bufferM = fopen(archiMascotas,"rb");
+    FILE* bufferD;
+    stMascota mascota;
+    stDuenio duenio;
+    if(bufferM)
+    {
+        while(fread(&mascota,sizeof(stMascota),1,bufferM) > 0)
+        {
+            bufferD = fopen(archiDuenios,"rb");
+            if(bufferD)
+            {
+                while(fread(&duenio,sizeof(stDuenio),1,bufferD) > 0)
+                {
+                    if(mascota.idDuenio == duenio.idDuenio &&
+                            mascota.eliminado == 0 &&
+                            duenio.eliminado == 0)
+                    {
+                        mostrarUnaMascotaConDuenio(mascota,duenio);
+                    }
+                }
+                fclose(bufferD);
+            }
+        }
+        fclose(bufferM);
+    }
+}
+
+void mostrarUnaMascotaConDuenio(stMascota mascota, stDuenio duenio)
+{
+    printf("\n====================================");
+    printf("\n        MASCOTA Y DUENIO");
+    printf("\n====================================");
+
+    printf("\nMascota : %s", mascota.nombre);
+    printf("\nEspecie : %s", mascota.especie);
+    printf("\nRaza    : %s", mascota.raza);
+
+    printf("\n------------------------------------");
+
+    printf("\nDuenio  : %s %s",
+           duenio.nombre,
+           duenio.apellido);
+
+    printf("\nTelefono: %s", duenio.telefono);
+
+    printf("\n====================================\n");
+}
+
