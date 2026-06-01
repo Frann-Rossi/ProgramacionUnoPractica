@@ -114,6 +114,7 @@ void menuDuenios()
 
     stDuenio arrDuenios[DIM];
     int validos = 0;
+    int i = 0;
 
     while(control == 's' || control == 'S')
     {
@@ -146,7 +147,9 @@ void menuDuenios()
             printf("\n[OK] Archivo pasado al arreglo correctamente.\n");
             break;
         case 7:
-            mostrarDueniosArr(arrDuenios,validos);
+            printf("\n======= LISTADO DE DUENIOS =======\n");
+            mostrarDueniosArr(arrDuenios,validos,i);
+            printf("\n=================================\n");
             break;
         case 0:
             control = 'n';

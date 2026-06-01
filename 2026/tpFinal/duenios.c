@@ -227,14 +227,13 @@ void pasarArchiToArrDuenios(char archi[],stDuenio arr[], int dim)
     }
 }
 
-void mostrarDueniosArr(stDuenio arr[],int val)
+void mostrarDueniosArr(stDuenio arr[],int val,int i)
 {
-    printf("\n======= LISTADO DE DUENIOS =======\n");
-    for(int i = 0; i < val; i++)
+    if(i < val)
     {
         mostrarUnDuenio(arr[i]);
+        mostrarDueniosArr(arr,val,i+1);
     }
-    printf("\n=================================\n");
 }
 
 int posMenor(stDuenio arr[],int val, int pos)

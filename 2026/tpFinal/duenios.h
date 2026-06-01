@@ -21,6 +21,7 @@ void modificarDuenio(char archivo[],int id);
 void eliminarDuenio(char archivo[],int id);
 void buscarDuenioPorId (char archivo[],int id);
 void pasarArchiToArrDuenios(char archi[],stDuenio arr[], int dim);
+void mostrarDueniosArr(stDuenio arr[],int val,int i);
 int posMenor(stDuenio arr[],int val, int pos);
 void ordenamientoPorSeleccion(stDuenio arr[],int val);
 
