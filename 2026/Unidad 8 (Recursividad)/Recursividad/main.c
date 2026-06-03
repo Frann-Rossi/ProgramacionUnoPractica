@@ -127,18 +127,93 @@ int sumarArrRecursiva(int arr[],int val, int i)
     return suma;
 }
 
-int buscarMenorElementoRecursiva (int arr[],int val,int i, int menor)
+int arrCapicuaRecursiva(int arr[],int val, int i)
 {
+    int rta;
+    int j =  val - 1 - i;
+    if(i >= j)
+    {
+        rta = 1;
+    }
+    else
+    {
+        if(arr[i] != arr[j])
+        {
+            rta = 0;
+        }
+        else
+        {
+            rta = arrCapicuaRecursiva(arr, val, i + 1);
+        }
+    }
+    return rta;
+}
+
+int buscarMenorElementoRecursiva (int arr[],int val,int i)
+{
+    int menor = 0;
     if(i < val)
     {
         if(arr[i] < menor)
         {
             menor = arr[i];
         }
-        menor = buscarMenorElementoRecursiva(arr,val,i+1,elem);
+        menor = buscarMenorElementoRecursiva(arr,val,i+1);
     }
     return menor;
 }
+
+void cargarArchiNumeros(char archivo[])
+{
+    FILE* buffer = fopen(archivo,"wb");
+    int num;
+    char control = 's';
+    if(buffer)
+    {
+        while(control == 's')
+        {
+            num = pedirNum("\nIngrese un numero para el archivo:");
+            fwrite(&num,sizeof(int),1,buffer);
+            printf("\nDesea seguir cargando numero al archivo 's/n':");
+            scanf(" %c",&control);
+        }
+        fclose(buffer);
+    }
+}
+
+void mostrarArchivoNum(char archivo[])
+{
+    FILE* buffer = fopen(archivo,"rb");
+    int num;
+    if(buffer)
+    {
+        while(fread(&num,sizeof(int),1,buffer)>0)
+        {
+            printf("|%d|",num);
+        }
+        fclose(buffer);
+    }
+}
+
+int buscarMenorElementoRecursivaArchivo(FILE* buffer)
+{
+    int num;
+    int menor;
+    if(fread(&num,sizeof(int),1,buffer)>0)
+    {
+        menor = buscarMenorElementoRecursivaArchivo(buffer);
+        if(num < menor)
+        {
+            menor = num;
+        }
+    }
+    else
+    {
+        menor = 999999;
+    }
+    return menor;
+}
+
 
 
 int main()
@@ -154,6 +229,8 @@ int main()
     int arr[DIM];
     int i = 0;
     int val = 0;
+
+    char archivo[] = "archiNum.bin";
 
     while(control == 's')
     {
@@ -178,6 +255,10 @@ int main()
             break;
         case 4:
             mostrarArrInvertido(arr,val,i);
+            break;
+        case 8:
+            cargarArchiNumeros(archivo);
+            mostrarArchivoNum(archivo);
             break;
         case 0:
             control = 'n';
