@@ -15,18 +15,18 @@ void mostrarMenu()
     printf("3  - Contar registros (primitivo)\n");
 
     printf("4  - Cargar archivo de alumnos\n");
-    printf("5  - Mostrar alumnos\n");
-    printf("6  - Agregar alumno\n");
+    printf("5  - Mostrar alumnos del archivo\n");
+    printf("6  - Agregar alumno al archivo\n");
 
-    printf("7  - Pasar legajos a pila (mayores de edad)\n");
-    printf("8  - Contar alumnos mayores a edad dada\n");
+    printf("7  - Pasar legajos de mayores a una pila\n");
+    printf("8  - Contar alumnos mayores a una edad\n");
     printf("9  - Mostrar alumnos por rango de edad\n");
 
-    printf("10 - Mostrar alumno de mayor edad\n");
-    printf("11 - Contar alumnos por anio\n");
+    printf("10 - Mostrar alumnos mayores de edad\n");
+    printf("11 - Pasar alumnos de un anio a arreglo\n");
 
-    printf("12 - Copiar arreglo -> archivo / archivo -> arreglo\n");
-    printf("13 - Cantidad de registros (fseek / ftell)\n");
+    printf("12 - Pasar arreglo a archivo y mostrarlo\n");
+    printf("13 - Cantidad de registros (fseek/ftell)\n");
 
     printf("14 - Mostrar alumno por posicion\n");
     printf("15 - Modificar alumno\n");
@@ -89,15 +89,15 @@ void menu()
             break;
         case 11:
             anio = pedirEntero("Ingrese un anio: ");
-            res = cantidadDeAlumnosPorAnio (archi,edad);
-            printf("La canidad de alumonos por el anio elejido es de:%d\n",res);
+            res = cantidadDeAlumnosPorAnio(archi, anio);
+            printf("La cantidad de alumnos del anio elegido es: %d\n", res);
+            val = pasarArchiAArr(archi, arrAlumnos, res, anio);
+            printf("\n===== ARR =====\n");
+            mostrarAlumnos(arrAlumnos, val);
             break;
         case 12:
-            printf("\n=====ARR=====\n");
-            val = pasarArchiAArr(archi,arrAlumnos,DIM);
-            mostrarAlumnos(arrAlumnos,val);
-            printf("\n=====ARCHIVO=====\n");
-            pasarArrAArchi(arrAlumnos,val,archiArr);
+            printf("\n===== ARCHIVO =====\n");
+            pasarArrAArchi(arrAlumnos, val, archiArr);
             mostrarAlumnosArchivo(archiArr);
             break;
         case 13:

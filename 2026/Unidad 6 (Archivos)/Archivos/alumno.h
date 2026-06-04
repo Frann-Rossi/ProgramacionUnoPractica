@@ -27,7 +27,7 @@ void mostrarAlumnosMayorDeEdad(char archivo[]);
 int cantidadDeAlumnosPorAnio (char archivo[], int anio);
 int cargarAlumnos(stAlumno arr[],int dim);
 void mostrarAlumnos(stAlumno arr[],int val);
-int pasarArchiAArr(char archivo[],stAlumno arr[], int dim);
+int pasarArchiAArr(char archivo[],stAlumno arr[], int dim,int anio);
 void pasarArrAArchi (stAlumno arr[],int val,char archivo[]);
 void mostrarAlumnoPorPosicion(char archivo[], int pos);
 

@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1780578961 source:c:\users\frann\desktop\programacionunopractica\2026\finalesdec\parcialgalaxiasplanetas(2do)\main.c
+	"menu.h"
+
+1780579342 c:\users\frann\desktop\programacionunopractica\2026\finalesdec\parcialgalaxiasplanetas(2do)\menu.h
+
+1780589466 source:c:\users\frann\desktop\programacionunopractica\2026\finalesdec\parcialgalaxiasplanetas(2do)\galaxia.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"galaxia.h"
+	"planeta.h"
+
+1780589975 c:\users\frann\desktop\programacionunopractica\2026\finalesdec\parcialgalaxiasplanetas(2do)\galaxia.h
+	"planeta.h"
+
+1780590021 c:\users\frann\desktop\programacionunopractica\2026\finalesdec\parcialgalaxiasplanetas(2do)\planeta.h
+

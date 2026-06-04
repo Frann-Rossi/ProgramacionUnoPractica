@@ -72,3 +72,23 @@
 
 1773751283 c:\users\frann\onedrive\desktop\programacionunopractica\2026\unidad 6 (archivos)\archivos\pila.h
 
+1779216324 source:c:\users\frann\desktop\programacionunopractica\2026\unidad 6 (archivos)\archivos\main.c
+	"menu.h"
+
+1779216324 c:\users\frann\desktop\programacionunopractica\2026\unidad 6 (archivos)\archivos\menu.h
+
+1779216324 source:c:\users\frann\desktop\programacionunopractica\2026\unidad 6 (archivos)\archivos\pila.c
+	<stdio.h>
+	"pila.h"
+
+1779216324 c:\users\frann\desktop\programacionunopractica\2026\unidad 6 (archivos)\archivos\pila.h
+
+1780524373 source:c:\users\frann\desktop\programacionunopractica\2026\unidad 6 (archivos)\archivos\menu.c
+	<stdio.h>
+	<stdlib.h>
+	"alumno.h"
+	"pila.h"
+
+1780523229 c:\users\frann\desktop\programacionunopractica\2026\unidad 6 (archivos)\archivos\alumno.h
+	"pila.h"
+

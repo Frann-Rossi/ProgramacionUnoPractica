@@ -266,7 +266,7 @@ void mostrarAlumnos(stAlumno arr[],int val)
     }
 }
 
-int pasarArchiAArr(char archivo[],stAlumno arr[], int dim)
+int pasarArchiAArr(char archivo[],stAlumno arr[], int dim,int anio)
 {
     FILE* buffer = fopen(archivo,"rb");
     stAlumno alumno;
@@ -276,8 +276,11 @@ int pasarArchiAArr(char archivo[],stAlumno arr[], int dim)
     {
         while(fread(&alumno,sizeof(stAlumno),1,buffer)>0 && i < dim)
         {
-            arr[i] = alumno;
-            i++;
+            if(alumno.anio == anio)
+            {
+                arr[i] = alumno;
+                i++;
+            }
         }
         fclose(buffer);
     }
@@ -351,5 +354,4 @@ void mostrarAlumnoPorPosicion(char archivo[], int pos)
     }
 }
 
-}
 // ==================================================
