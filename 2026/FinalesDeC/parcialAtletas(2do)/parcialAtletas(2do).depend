@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1780757922 source:c:\users\frann\desktop\programacionunopractica\2026\finalesdec\parcialatletas(2do)\main.c
+	"menu.h"
+
+1780760345 c:\users\frann\desktop\programacionunopractica\2026\finalesdec\parcialatletas(2do)\menu.h
+
+1780760333 source:c:\users\frann\desktop\programacionunopractica\2026\finalesdec\parcialatletas(2do)\menu.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+	"atleta.h"
+
+1780760364 c:\users\frann\desktop\programacionunopractica\2026\finalesdec\parcialatletas(2do)\atleta.h
+
