@@ -214,6 +214,66 @@ int buscarMenorElementoRecursivaArchivo(FILE* buffer)
     return menor;
 }
 
+void invertirElemRecursiva(FILE* buffer)
+{
+    int num;
+    if(fread(&num,sizeof(int),1,buffer)>0)
+    {
+        invertirElemRecursiva(buffer);
+        printf("%d ", num);
+    }
+}
+
+/*
+void recorrerElemInversaRecu(FILE* buffer)
+{
+    stAlumno alum;
+    if(fread(&alum,sizeof(stAlumno),1,buffer)>0)
+    {
+        invertirElemRecursiva(buffer);
+        mostrarUnAlumno(alum)
+    }
+}
+*/
+
+char pedirChar(char msj[])
+{
+    char opcion;
+    printf("%s",msj);
+    scanf(" %c",&opcion);
+    return opcion;
+}
+
+void mostrarElemInvertidos()
+{
+    char opcion = pedirChar("\nIngrese un CARACTER o '*' para salir:");
+    if(opcion != '*')
+    {
+        mostrarElemInvertidos();
+        printf("|%c|",opcion);
+    }
+}
+
+int buscarElemento(int arr[],int val,int i,int elem)
+{
+    int flag = -1;
+
+    if(i < val)
+    {
+        if(arr[i] == elem)
+        {
+            flag = i;
+        }
+        else
+        {
+            flag = buscarElemento(arr,val,i+1,elem);
+        }
+    }
+
+    return  flag;
+}
+
+
 
 
 int main()
@@ -259,6 +319,9 @@ int main()
         case 8:
             cargarArchiNumeros(archivo);
             mostrarArchivoNum(archivo);
+            break;
+        case 11:
+            mostrarElemInvertidos();
             break;
         case 0:
             control = 'n';
