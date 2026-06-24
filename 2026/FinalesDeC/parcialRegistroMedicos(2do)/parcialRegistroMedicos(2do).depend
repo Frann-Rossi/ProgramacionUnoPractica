@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1782253765 source:c:\users\frann\desktop\programacionunopractica\2026\finalesdec\parcialregistromedicos(2do)\main.c
+	<stdio.h>
+	<stdlib.h>
+
