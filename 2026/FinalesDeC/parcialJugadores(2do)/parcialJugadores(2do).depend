@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1782672134 source:c:\users\frann\desktop\programacionunopractica\2026\finalesdec\parcialjugadores(2do)\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+

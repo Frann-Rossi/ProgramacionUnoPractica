@@ -353,10 +353,20 @@ int pedirNum (char msj[])
     return num;
 }
 
-void menu ()
+void menu()
 {
-    printf("\nEj 1 == 1");
-    printf("\nSalir == 0");
+    printf("\n========== MENU ==========");
+    printf("\n1 - Cargar registros en arreglo");
+    printf("\n2 - Mostrar registros del arreglo");
+    printf("\n3 - Cargar registros en archivo");
+    printf("\n4 - Mostrar registros del archivo");
+    printf("\n5 - Mostrar registros recursivo");
+    printf("\n6 - Sumar atenciones mayores a 500");
+    printf("\n7 - Pasar registros con precio mayor a 1500 a otro archivo");
+    printf("\n8 - Mostrar registros de un doctor");
+    printf("\n9 - Porcentaje de una especialidad");
+    printf("\n10 - Crear arreglo dinamico sin especialidades repetidas");
+    printf("\n0 - Salir");
 }
 
 stRegistroMedico cargarUnRegistro()
