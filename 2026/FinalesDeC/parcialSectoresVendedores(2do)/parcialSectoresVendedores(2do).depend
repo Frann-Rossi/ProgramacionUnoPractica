@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1783911170 source:c:\users\frann\desktop\programacionunopractica\2026\finalesdec\parcialsectoresvendedores(2do)\pila.c
+	<stdio.h>
+	"pila.h"
+
+1783911170 c:\users\frann\desktop\programacionunopractica\2026\finalesdec\parcialsectoresvendedores(2do)\pila.h
+
+1783953075 source:c:\users\frann\desktop\programacionunopractica\2026\finalesdec\parcialsectoresvendedores(2do)\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"pila.h"
+
