@@ -81,7 +81,7 @@ int main()
 
     char archivoVendedores[] = "archivoVendedores.bin";
 
-    FILE* buffer = fopen(archivoVendedores,"rb");
+    FILE* buffer;
 
     char dni[15];
 
@@ -112,6 +112,7 @@ int main()
             cargarArchivoVendedores(archivoVendedores,arrVendedores,valVendedores);
             break;
         case 5:
+            buffer = fopen(archivoVendedores,"rb");
             if(buffer)
             {
                 mostrarVendedoresRecu(buffer);
@@ -124,13 +125,14 @@ int main()
             break;
         case 6:
             printf("\nIngrese DNI para Modificar:");
-            scanf("%s",&dni);
+            scanf("%s",dni);
             modificarNombreApellido(archivoVendedores,dni);
             break;
         case 7:
             printf("\nIngrese SECTOR para CARGAR en ARR dinamico:");
-            scanf("%s",&sector);
+            scanf("%s",sector);
             valVendedoresDin = arrDinVendedores(&arrVendedoresDin,archivoVendedores,sector);
+            mostrarVendedores(arrVendedoresDin,valVendedoresDin);
             break;
         case 0:
             control = 'n';
@@ -186,7 +188,7 @@ stVendedor cargarUnVendedor(char archivoSector[])
     scanf("%s",vendedor.dni);
     printf("\nIngrese NOMBRE y APELLIDO del VENDEDOR:");
     fflush(stdin);
-    gets_s(vendedor.nombreYapellido,sizeof(vendedor.nombreYapellido));
+    fgets(vendedor.nombreYapellido,sizeof(vendedor.nombreYapellido),stdin);
     printf("\nIngrese el MONTO VENDIDO del VENDEDOR:");
     scanf("%d",&vendedor.montoVendido);
     do
@@ -236,10 +238,6 @@ stSector cargarUnSector(char archivoSector[],int idSector)
             {
                 sectorAux = sector;
             }
-            else
-            {
-                printf("\Error el id no existe ingrese otro");
-            }
         }
         fclose(buffer);
     }
@@ -280,6 +278,7 @@ int buscarSector(char archivoSector[],int idSector)
 //==================================================
 void mostrarUnSector(stSector sector)
 {
+    printf("\n===SECTOR===");
     printf("\nId Sector:%d",sector.id);
     printf("\nNombre del Sector:%s",sector.nombreSector);
     printf("\nComision del Sector:%.2f",sector.comisionesPorVenta);
@@ -288,10 +287,14 @@ void mostrarUnSector(stSector sector)
 
 void mostrarUnVendedor(stVendedor vendedor)
 {
+    printf("\n");
+    printf("\n**********");
+    printf("\n===VENDEDOR===");
     printf("\nDni del Vendedor:%s",vendedor.dni);
     printf("\nNombre y Apellido del Vendedor:%s",vendedor.nombreYapellido);
-    printf("\nMonto Vendido del Vendedor:%d",vendedor.montoVendido);
+    printf("Monto Vendido del Vendedor:%d",vendedor.montoVendido);
     mostrarUnSector(vendedor.sector);
+    printf("\n**********");
 }
 
 void mostrarVendedores(stVendedor arrVendedores[],int val)
@@ -330,7 +333,7 @@ void cargarArchivoVendedores(char archivoVendedores[],stVendedor arrVenedodres[]
 
     if(buffer)
     {
-        fwrite(&arrVenedodres,sizeof(stVendedor),val,buffer);
+        fwrite(arrVenedodres,sizeof(stVendedor),val,buffer);
         fclose(buffer);
     }
 }
@@ -345,10 +348,6 @@ void mostrarVendedoresRecu(FILE* buffer)
     {
         mostrarUnVendedor(vendedor);
         mostrarVendedoresRecu(buffer);
-    }
-    else
-    {
-        printf("\nError al abrir el archivo");
     }
 }
 //==================================================
@@ -366,10 +365,12 @@ void modificarNombreApellido(char archivoVendedores[],char dniBuscado[])
         {
             if(strcmpi(vendedor.dni,dniBuscado)== 0)
             {
-                fseek(buffer,-sizeof(stVendedor),SEEK_CUR);
+                fseek(buffer,-(long)sizeof(stVendedor),SEEK_CUR);
                 printf("\nIngrese el nuevo NOMBRE y APELLIDO:");
-                scanf("%s",vendedor.nombreYapellido);
+                fflush(stdin);
+                fgets(vendedor.nombreYapellido, sizeof(vendedor.nombreYapellido), stdin);
                 fwrite(&vendedor,sizeof(vendedor),1,buffer);
+                break;
             }
         }
         fclose(buffer);
@@ -427,10 +428,9 @@ void pasarDeArchiToArrDin(char archivoVendedores[],char sectorBuscado[],stVended
 int arrDinVendedores(stVendedor** arrVendedores,char archivoVendedores[],char sectorBuscado[])
 {
     int cant = contarCantDeUnSector(archivoVendedores,sectorBuscado);
-    *arrVendedores = malloc(cant*sizeof(stVendedor));
     if (cant > 0)
     {
-        *arrVendedores = malloc(cant * sizeof(stVendedor));
+        *arrVendedores = malloc(cant*sizeof(stVendedor));
         pasarDeArchiToArrDin(archivoVendedores, sectorBuscado, *arrVendedores);
     }
     return cant;
