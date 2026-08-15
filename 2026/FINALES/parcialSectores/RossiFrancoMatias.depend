@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1709726650 source:d:\rossifrancomatias\pila.c
+	"pila.h"
+
+1709726652 d:\rossifrancomatias\pila.h
+	<stdio.h>
+	<malloc.h>
+
