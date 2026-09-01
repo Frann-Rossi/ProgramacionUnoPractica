@@ -188,7 +188,11 @@ stVendedor cargarUnVendedor(char archivoSector[])
     scanf("%s",vendedor.dni);
     printf("\nIngrese NOMBRE y APELLIDO del VENDEDOR:");
     fflush(stdin);
+<<<<<<< Updated upstream
     fgets(vendedor.nombreYapellido,sizeof(vendedor.nombreYapellido),stdin);
+=======
+    gets_s(vendedor.nombreYapellido,sizeof(40));
+>>>>>>> Stashed changes
     printf("\nIngrese el MONTO VENDIDO del VENDEDOR:");
     scanf("%d",&vendedor.montoVendido);
     do
