@@ -286,3 +286,46 @@ void modificarPedido(char archivoPedidos[],int dni,int idModelo)
         printf("\nError en la apertura del archivo.");
 }
 // ==================================================
+
+
+// ==================================================
+//EJERCIO 6
+void pedidosPasadosPila(Pila* pedidos,char archivoPedidos[])
+{
+    FILE buffer = fopen(archivoPedidos,"rb");
+    PedidoSt pedidoEntregado;
+    int res = 0;
+    if(buffer)
+    {
+        while(fread(&pedidoEntregado,sizeof(PedidoSt),1,buffer)>0)
+        {
+            if(pedidoEntregado.entregado == 1)
+            {
+                apilar(pedidos,pedidoEntregado.entregado)
+            }
+        }
+        fclose(buffer);
+    }
+}
+
+
+int sumarElemDePila(Pila pedidos)
+{
+    int sum = 0;
+    while(!pilavacia(&pedidos))
+    {
+        sum += desapilar(&pedidos);
+    }
+    return sum;
+}
+
+int recaudacionDePedidos(char archivoPedidos[])
+{
+    Pila pedidos;
+    inicpila(&pedidos);
+    pedidosPasadosPila(&pedidos,archivoPedidos);
+    int res = sumarElemDePila(&pedidos);
+    return res;
+}
+// ==================================================
+
